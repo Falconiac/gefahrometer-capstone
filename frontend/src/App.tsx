@@ -34,4 +34,3 @@ function App() {
 export default App;
 
 
-// mongodb+srv://MONGO_ATLAS_KEY:eCT8ulwKe1nCgF8w@neuefische.tojbm.mongodb.net/?retryWrites=true&w=majority

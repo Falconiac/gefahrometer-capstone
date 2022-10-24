@@ -29,7 +29,7 @@ public class User {
     private String companyStreet;
     private String companyZip;
     private String companyLocation;
-    private List<String> employees;
+//    private List<String> employees;
     private String medicalCareName;
     private String medicalCareStreet;
     private String medicalCareZip;

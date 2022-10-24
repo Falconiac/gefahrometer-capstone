@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DevUserService {
+public class UserService {
 
     private final UserRepo uRepo;
     private final IdService idService;
 
 @Autowired
-    public DevUserService(UserRepo uRepo, IdService idService) {
+    public UserService(UserRepo uRepo, IdService idService) {
         this.uRepo = uRepo;
         this.idService = idService;
     }

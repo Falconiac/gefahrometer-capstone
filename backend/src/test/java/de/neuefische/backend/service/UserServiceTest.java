@@ -1,7 +1,6 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.User;
-import de.neuefische.backend.model.UserDTO;
 import de.neuefische.backend.repository.UserRepo;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +9,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class DevUserServiceTest {
+class UserServiceTest {
 
     UserRepo userRepo = mock(UserRepo.class);
 
     IdService idService = mock(IdService.class);
 
-    DevUserService devUserService = new DevUserService(userRepo, idService);
+    UserService userService = new UserService(userRepo, idService);
 
 
     @Test
@@ -41,7 +40,7 @@ class DevUserServiceTest {
 
 
         //WHEN
-        List<User> actual = devUserService.getAllUser();
+        List<User> actual = userService.getAllUser();
         //Then
         List<User> expected = List.of(
                 new User("1", "a@b.de",
@@ -81,7 +80,7 @@ class DevUserServiceTest {
                 .build());
 
         //WHEN
-        User actual = devUserService.addUser(user1);
+        User actual = userService.addUser(user1);
 
         //THEN
         assertEquals(expectedUser, actual);

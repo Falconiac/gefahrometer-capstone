@@ -1,0 +1,25 @@
+.adminUserSection{
+
+    box-sizing: border-box;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.companyList{
+    width: 60vw;
+    height: 95vh;
+    border: 2px solid white;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+    overflow-x: scroll;
+
+}
+

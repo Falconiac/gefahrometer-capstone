@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import User from "./model/User";
 import useUsers from "./hooks/useUsers";
+import UserCard from "./components/UserCard/UserCard";
+import CreateUserForm from "./components/createUserForm/CreateUserForm";
 
 function App() {
 
@@ -12,10 +13,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+          <CreateUserForm />
+
         {users.map((user : User)=>{
-          return <p>{user.companyName}</p>
+          return <UserCard key={user.mail} user={user}/>
         })}
+
+
+
+
       </header>
     </div>
   );

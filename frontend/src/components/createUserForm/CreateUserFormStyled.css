@@ -1,0 +1,26 @@
+.formSection{
+
+    height: fit-content;
+    margin: 5em auto;
+
+}
+
+.userForm{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    width: 90%;
+    margin: 1em auto;
+}
+
+.noShow{
+    display: none;
+}

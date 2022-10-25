@@ -1,0 +1,12 @@
+article{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+    width: 20em;
+    height: fit-content;
+    border: 2px solid white;
+    border-radius: 1em;
+    margin: 3em auto;
+}

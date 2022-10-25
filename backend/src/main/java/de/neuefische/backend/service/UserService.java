@@ -1,11 +1,13 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.User;
+import de.neuefische.backend.model.AppUser;
 import de.neuefische.backend.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,10 +21,25 @@ public class UserService {
         this.idService = idService;
     }
 
-    public List<User> getAllUser(){return uRepo.findAll();}
+    public List<AppUser> getAllUser(){return uRepo.findAll();}
 
-    public User addUser(User user){
-    user.setId(idService.generateID());
-    return  uRepo.save(user);
+    public AppUser addUser(AppUser appUser){
+    appUser.setId(idService.generateID());
+    return  uRepo.save(appUser);
     }
+
+    public void deleteUser(String id) throws Exception {
+    Optional<AppUser> appUserOptional = uRepo.findById(id);
+
+    if(appUserOptional.isPresent()) {
+        AppUser foundAppUser = appUserOptional.get();
+        uRepo.delete(foundAppUser);
+    }else {
+        throw new NoSuchElementException("User not found.");
+    }
+
+    }
+
 }
+
+

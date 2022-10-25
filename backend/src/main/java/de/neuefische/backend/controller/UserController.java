@@ -1,9 +1,10 @@
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.User;
+import de.neuefische.backend.model.AppUser;
 import de.neuefische.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -21,12 +22,18 @@ public class UserController {
 
 
     @GetMapping
-    public List<User> getAllUser(){
+    public List<AppUser> getAllUser(){
         return userService.getAllUser();
     }
 
     @PostMapping
-    public User addNewUser(@RequestBody User user){
-        return userService.addUser(user);
+    public AppUser addNewUser(@RequestBody AppUser appUser){
+        return userService.addUser(appUser);
     }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id) throws Exception {
+        userService.deleteUser(id);
+    }
+
 }

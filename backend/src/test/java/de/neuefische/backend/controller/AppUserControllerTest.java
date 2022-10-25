@@ -1,6 +1,7 @@
+
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.User;
+import de.neuefische.backend.model.AppUser;
 import de.neuefische.backend.repository.UserRepo;
 import de.neuefische.backend.service.IdService;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -21,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class UserControllerTest {
+class AppUserControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -37,7 +40,7 @@ class UserControllerTest {
     @Test
     void getAllUserShouldReturnAllItemsFromDB() throws Exception {
         //GIVEN
-        userRepo.save(new User("1", "a@b.de",
+        userRepo.save(new AppUser("1", "a@b.de",
                 "Test1",
                 "Test1",
                 "Test1",
@@ -46,23 +49,11 @@ class UserControllerTest {
                 "Test1",
                 "Test1",
                 "Test1",
+                List.of(),
                 "Test1",
                 "Test1",
                 "Test1",
                 "Test1"));
-        userRepo.save(new User("2", "a@b.de",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2",
-                "Test2"));
 
         String expectedJSON = """
                 [
@@ -77,32 +68,17 @@ class UserControllerTest {
                     "companyStreet":"Test1",
                     "companyZip":"Test1",
                     "companyLocation":"Test1",
+                    "employees": [],
                     "medicalCareName":"Test1",
                     "medicalCareStreet":"Test1",
                     "medicalCareZip":"Test1",
                     "medicalCareLocation":"Test1"
-                },
-                {
-                    "id":"2",
-                    "mail":"a@b.de",
-                    "accountName":"Test2",
-                    "password":"Test2",
-                    "manageFirstName":"Test2",
-                    "manageLastName":"Test2",
-                    "companyName":"Test2",
-                    "companyStreet":"Test2",
-                    "companyZip":"Test2",
-                    "companyLocation":"Test2",
-                    "medicalCareName":"Test2",
-                    "medicalCareStreet":"Test2",
-                    "medicalCareZip":"Test2",
-                    "medicalCareLocation":"Test2"
                 }
                 ]
                 """;
 
         //WHEN & THEN
-        mockMvc.perform(get("/dev/user"))
+        mockMvc.perform(get("/api/user"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJSON));
 
@@ -125,6 +101,7 @@ class UserControllerTest {
                     "companyStreet":"Test1",
                     "companyZip":"Test1",
                     "companyLocation":"Test1",
+                    "employees":["Herbert"],
                     "medicalCareName":"Test1",
                     "medicalCareStreet":"Test1",
                     "medicalCareZip":"Test1",
@@ -144,6 +121,7 @@ class UserControllerTest {
                     "companyStreet":"Test1",
                     "companyZip":"Test1",
                     "companyLocation":"Test1",
+                    "employees": ["Herbert"],
                     "medicalCareName":"Test1",
                     "medicalCareStreet":"Test1",
                     "medicalCareZip":"Test1",
@@ -153,7 +131,7 @@ class UserControllerTest {
 
         //WHEN & THEN
         mockMvc.perform(
-                post("/dev/user")
+                post("/api/user")
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .content(requestBody))
                 .andExpect(status().isOk())

@@ -3,9 +3,14 @@ import {ChangeEvent, FormEvent, useState} from "react";
 import User from "../../model/User";
 import axios from "axios";
 
+
 const url = "/api/user"
 
-export default function CreateUserForm(){
+type CreateUserFormProps = {
+    reloadUsers : () => void;
+}
+
+export default function CreateUserForm(props: CreateUserFormProps){
 
     const [formSite, setFormSite] = useState(0);
 
@@ -40,9 +45,8 @@ export default function CreateUserForm(){
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         axios.post(url, {...user})
-        window.location.reload();
+            .then(props.reloadUsers)
         }
-
 
 
         return(
@@ -50,7 +54,7 @@ export default function CreateUserForm(){
 
         <form className={"userForm"} onSubmit={handleSubmit}>
 
-            <article className={formSite === 0 ? "show" : "noShow"}>
+            {formSite === 0 && <article>
             <label htmlFor={"mail"}>Mail:
                 <input
                 type={"email"}
@@ -65,13 +69,9 @@ export default function CreateUserForm(){
                     event.preventDefault();
                     setFormSite(formSite+1)
                 }}>Weiter</button>
-                <button onClick={(event)=>{
-                    event.preventDefault();
-                    setFormSite(formSite-1)
-                }}>Zurück</button>
-            </article>
+            </article>}
 
-            <article className={formSite === 1 ? "show" : "noShow"}>
+            {formSite === 1 && <article>
             <label htmlFor={"accountName"}>Benutzername:
                 <input
                     type={"text"}
@@ -93,15 +93,15 @@ export default function CreateUserForm(){
                 </label>
                 <button onClick={(event)=>{
                     event.preventDefault();
-                    setFormSite(formSite+1)
-                }}>Weiter</button>
-                <button onClick={(event)=>{
-                    event.preventDefault();
                     setFormSite(formSite-1)
                 }}>Zurück</button>
-            </article>
+                <button onClick={(event)=>{
+                    event.preventDefault();
+                    setFormSite(formSite+1)
+                }}>Weiter</button>
+            </article>}
 
-            <article className={formSite === 2 ? "show" : "noShow"}>
+            {formSite === 2 && <article>
             <label htmlFor={"manageFirstName"}>Vorname:
                 <input
                     type={"text"}
@@ -158,15 +158,16 @@ export default function CreateUserForm(){
             </label>
                 <button onClick={(event)=>{
                     event.preventDefault();
-                    setFormSite(formSite+1)
-                }}>Weiter</button>
-                <button onClick={(event)=>{
-                    event.preventDefault();
                     setFormSite(formSite-1)
                 }}>Zurück</button>
-            </article>
+                <button onClick={(event)=>{
+                    event.preventDefault();
+                    setFormSite(formSite+1)
+                }}>Weiter</button>
 
-            <article className={formSite === 3 ? "show" : "noShow"}>
+            </article>}
+
+            {formSite === 3 && <article>
             <label htmlFor={"medicalCareName"}>Betriebsarzt:
                 <input
                     type={"text"}
@@ -208,7 +209,7 @@ export default function CreateUserForm(){
                     setFormSite(formSite-1)
                 }}>Zurück</button>
                 <input type="submit"/>
-            </article>
+            </article>}
 
         </form>
         </section>

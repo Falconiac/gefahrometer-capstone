@@ -5,6 +5,7 @@ import de.neuefische.backend.repository.UserRepo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -15,11 +16,10 @@ class AppUserServiceTest {
 
     IdService idService = mock(IdService.class);
 
-    UserService userService = new UserService(userRepo, idService);
-
+    private final UserService userService = new UserService(userRepo, idService);
 
     @Test
-    void getAllUser() {
+    void getAllUserTest() {
         //GIVEN
         when(userRepo.findAll())
                 .thenReturn(List.of(
@@ -43,7 +43,7 @@ class AppUserServiceTest {
     }
 
     @Test
-    void addUser() {
+    void addUserTest() {
         AppUser appUser1 = AppUser.builder()
                 .accountName("Test")
                 .password("test")
@@ -64,6 +64,22 @@ class AppUserServiceTest {
 
         //THEN
         assertEquals(expectedAppUser, actual);
+
+    }
+
+    @Test
+    void deleteUserTest() throws Exception {
+
+        AppUser user1 = AppUser.builder().id("1").companyName("Test1").build();
+
+        //Given
+        when(userRepo.findById("1")).thenReturn(Optional.ofNullable(user1));
+
+        //When
+        userService.deleteUser("1");
+
+        //Then
+        verify(userRepo).delete(user1);
 
     }
 }

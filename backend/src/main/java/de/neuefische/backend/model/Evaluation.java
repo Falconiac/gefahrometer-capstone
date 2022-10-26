@@ -31,6 +31,6 @@ public class Evaluation {
     private String respPerson;
     private String doneTil;
     private String controlDone;
-    private boolean isDone;
+    private boolean control = false;
     private String comments;
 }

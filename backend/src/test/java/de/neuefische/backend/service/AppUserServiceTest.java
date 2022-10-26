@@ -79,6 +79,7 @@ class AppUserServiceTest {
         userService.deleteUser("1");
 
         //Then
+        assert user1 != null;
         verify(userRepo).delete(user1);
 
     }

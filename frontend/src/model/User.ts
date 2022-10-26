@@ -9,7 +9,7 @@ type User={
     companyStreet : string;
     companyZip : string;
     companyLocation : string;
-//    private List<String> employees;
+    employees : Array<string>;
     medicalCareName : string;
     medicalCareStreet : string;
     medicalCareZip : string;

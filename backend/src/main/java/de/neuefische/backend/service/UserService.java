@@ -29,7 +29,6 @@ public class UserService {
     return  uRepo.save(appUser);
     }
 
-
     public void deleteUser(String id){
     Optional<AppUser> appUserOptional = uRepo.findById(id);
 

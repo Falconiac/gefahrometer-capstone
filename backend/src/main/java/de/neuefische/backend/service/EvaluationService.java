@@ -1,6 +1,7 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Evaluation;
+import de.neuefische.backend.model.EvaluationDTO;
 import de.neuefische.backend.repository.EvaluationRepo;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class EvaluationService {
 
     public Evaluation addEvaluation(@NotNull Evaluation eva){
         eva.setId(idService.generateID());
-        return evaluationRepo.save(eva);
+        return  evaluationRepo.save(eva);
     }
 
     public void deleteEvaluation(String id){

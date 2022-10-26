@@ -1,7 +1,6 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.Evaluation;
-import de.neuefische.backend.model.EvaluationDTO;
 import de.neuefische.backend.service.EvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +29,7 @@ public class EvaluationController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteEvatluation(@PathVariable String id){
+    public void deleteEvaluation(@PathVariable String id){
         evaluationService.deleteEvaluation(id);
     }
 

@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
@@ -137,5 +138,29 @@ class AppUserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJSON));
 
+    }
+
+    @DirtiesContext
+    @Test
+    void deleteUser() throws Exception{
+        userRepo.save(new AppUser("1", "a@b.de",
+                "Test1",
+                "Test1",
+                "Test1",
+                "Test1",
+                "Test1",
+                "Test1",
+                "Test1",
+                "Test1",
+                List.of(),
+                "Test1",
+                "Test1",
+                "Test1",
+                "Test1"));
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .delete("/api/user/{id}","1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }

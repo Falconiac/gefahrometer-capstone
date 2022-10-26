@@ -72,6 +72,7 @@ class EvaluationServiceTest {
         evaluationService.deleteEvaluation("1");
 
         //THEN
+        assert evaluation1 != null;
         verify(evaluationRepo).delete(evaluation1);
     }
 }

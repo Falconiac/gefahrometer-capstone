@@ -21,6 +21,7 @@ public class UserService {
         this.idService = idService;
     }
 
+
     public List<AppUser> getAllUser(){return uRepo.findAll();}
 
     public AppUser addUser(AppUser appUser){
@@ -28,7 +29,8 @@ public class UserService {
     return  uRepo.save(appUser);
     }
 
-    public void deleteUser(String id) throws Exception {
+
+    public void deleteUser(String id){
     Optional<AppUser> appUserOptional = uRepo.findById(id);
 
     if(appUserOptional.isPresent()) {

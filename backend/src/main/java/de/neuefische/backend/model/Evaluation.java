@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
 @Data
 @Builder
@@ -26,7 +25,11 @@ public class Evaluation {
     private String title;
     private String txtBlock;
     private String subTxt;
-    private List<String> subList;
+    private String subListItem1;
+    private String subListItem2;
+    private String subListItem3;
+    private String subListItem4;
+    private String subListItem5;
     private boolean done = false;
     private String respPerson;
     private String doneTil;

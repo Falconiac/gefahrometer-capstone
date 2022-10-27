@@ -3,6 +3,8 @@ import useUsers from "../../hooks/useUsers";
 import UserCard from "../userCard/UserCard";
 import "./AdminUserSection.css";
 import User from "../../model/User";
+import useEvaluation from "../../hooks/useEvaluation";
+import CreateEvaluationForm from "../createEvaluationCatalogForm/CreateEvaluationForm";
 
 
 
@@ -10,10 +12,12 @@ import User from "../../model/User";
 
 export default function AdminUserSection(){
 
+
     const {users, getUsers} = useUsers();
+    const { getEvaluationCatalog} = useEvaluation();
 
     return(
-
+        <>
         <section className={"adminUserSection"}>
 
             <CreateUserForm reloadUsers={getUsers}/>
@@ -23,8 +27,11 @@ export default function AdminUserSection(){
                 return <UserCard key={user.id} user={user} reloadUsers={getUsers}/>
             })}
             </div>
-
         </section>
+
+            <CreateEvaluationForm reloadEvaluations={getEvaluationCatalog}/>
+
+        </>
 
     )
 

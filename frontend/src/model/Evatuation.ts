@@ -5,7 +5,11 @@ type Evaluation={
     title: string;
     txtBlock : string;
     subTxt : string;
-    subList : Array<string>;
+    subListItem1: string;
+    subListItem2: string;
+    subListItem3: string;
+    subListItem4: string;
+    subListItem5: string;
     done : false;
     respPerson : string;
     doneTil : string;

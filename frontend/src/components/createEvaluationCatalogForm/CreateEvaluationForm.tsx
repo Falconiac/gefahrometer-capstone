@@ -2,7 +2,6 @@ import Evaluation from "../../model/Evatuation";
 import {ChangeEvent, FormEvent, useState} from "react";
 import axios from "axios";
 
-
 const url = "/api/evaluation";
 
 type CreateEvaluationFormProps = {
@@ -11,6 +10,7 @@ type CreateEvaluationFormProps = {
 
 export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
 
+
     const emptyEvaluation : Evaluation = {
         category : "",
         inCategoryNum : 0,
@@ -18,7 +18,11 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
         title: "",
         txtBlock : "",
         subTxt : "",
-        subList : [],
+        subListItem1: "",
+        subListItem2: "",
+        subListItem3: "",
+        subListItem4: "",
+        subListItem5: "",
         done : false,
         respPerson : "",
         doneTil : "",
@@ -45,8 +49,9 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
             .then(props.reloadEvaluations)
     }
 
+
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
 
             <label htmlFor={"category"}>Kategorie:
                 <input
@@ -108,43 +113,53 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
                 />
             </label>
 
-            <label htmlFor={"subList"}>Unterpunkt 1:
+           <label htmlFor={"subList1"}>Unterpunkt 1:
                 <input
                     type={"text"}
-                    name={"subList"}
+                    name={"subListItem1"}
                     onChange={handleChange}
-                    value={evaluation.subList[0]}
-                    placeholder={"Sub-List 1"}
+                    value={evaluation.subListItem1}
+                    placeholder={"Unterpunkt1"}
                 />
             </label>
 
-            <label htmlFor={"subList"}>Unterpunkt 2:
+           <label htmlFor={"subList2"}>Unterpunkt 2:
                 <input
                     type={"text"}
-                    name={"subList"}
+                    name={"subListItem2"}
                     onChange={handleChange}
-                    value={evaluation.subList[1]}
-                    placeholder={"Sub-List 2"}
+                    value={evaluation.subListItem2}
+                    placeholder={"Unterpunkt2"}
                 />
             </label>
 
-            <label htmlFor={"subList"}>Unterpunkt 3:
+            <label htmlFor={"subList3"}>Unterpunkt 3:
                 <input
                     type={"text"}
-                    name={"subList"}
+                    name={"subListItem3"}
                     onChange={handleChange}
-                    value={evaluation.subList[2]}
-                    placeholder={"Sub-List 3"}
+                    value={evaluation.subListItem3}
+                    placeholder={"Unterpunkt3"}
                 />
             </label>
 
-            <label htmlFor={"subList"}>Unterpunkt 4:
+            <label htmlFor={"subList4"}>Unterpunkt 4:
                 <input
                     type={"text"}
-                    name={"subList"}
+                    name={"subListItem4"}
                     onChange={handleChange}
-                    value={evaluation.subList[3]}
-                    placeholder={"Sub-List 4"}
+                    value={evaluation.subListItem4}
+                    placeholder={"Unterpunkt4"}
+                />
+            </label>
+
+            <label htmlFor={"subList5"}>Unterpunkt 5:
+                <input
+                    type={"text"}
+                    name={"subListItem5"}
+                    onChange={handleChange}
+                    value={evaluation.subListItem5}
+                    placeholder={"Unterpunkt5"}
                 />
             </label>
 
@@ -170,7 +185,7 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
 
             <label htmlFor={"doneTil"}>Zu erledigen bis:
                 <input
-                    type={"text"}
+                    type={"date"}
                     name={"doneTil"}
                     onChange={handleChange}
                     value={evaluation.doneTil}
@@ -208,7 +223,7 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
                 />
             </label>
 
-            <input type={"submit"} onClick={()=>handleSubmit}/>
+            <input type={"submit"}/>
         </form>
     )
 

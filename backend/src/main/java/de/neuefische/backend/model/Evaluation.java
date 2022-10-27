@@ -18,7 +18,6 @@ public class Evaluation {
     @Id
     private String id;
 
-
     private String category;
     private Integer inCategoryNum ;
     private String categoryImg;

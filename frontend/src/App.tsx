@@ -1,5 +1,5 @@
 import './App.css';
-import AdminUserSection from "./components/adminUserSection/adminUserSection";
+import AdminUserSection from "./components/adminUserSection/AdminUserSection";
 
 function App() {
 

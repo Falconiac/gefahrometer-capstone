@@ -24,6 +24,7 @@ export default function CreateUserForm(props: CreateUserFormProps){
         companyStreet : "",
         companyZip : "",
         companyLocation : "",
+        employees : [],
         medicalCareName : "",
         medicalCareStreet : "",
         medicalCareZip : "",

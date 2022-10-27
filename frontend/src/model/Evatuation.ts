@@ -1,4 +1,5 @@
 type Evaluation={
+    id: string;
     headCategory : string;
     category : string;
     inCategoryNum : number;

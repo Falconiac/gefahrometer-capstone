@@ -44,6 +44,7 @@ class EvaluationControllerTest {
         evaluationRepo.save(new Evaluation(
                 "1",
                 "test",
+                "test",
                 1,
                 "test",
                 "test",
@@ -65,6 +66,7 @@ class EvaluationControllerTest {
                 [
                 {
                     "id":"1",
+                    "headCategory":"test",
                     "category":"test",
                     "inCategoryNum":1,
                     "categoryImg":"test",
@@ -100,6 +102,7 @@ class EvaluationControllerTest {
 
         String requestBody = """
                 {
+                    "headCategory":"test",
                     "category":"test",
                     "inCategoryNum":1,
                     "categoryImg":"test",
@@ -159,6 +162,7 @@ class EvaluationControllerTest {
 
         evaluationRepo.save(new Evaluation(
                 "1",
+                "test",
                 "test",
                 1,
                 "test",

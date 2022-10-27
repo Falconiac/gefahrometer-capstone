@@ -1,4 +1,5 @@
 type Evaluation={
+    headCategory : string;
     category : string;
     inCategoryNum : number;
     categoryImg : string;

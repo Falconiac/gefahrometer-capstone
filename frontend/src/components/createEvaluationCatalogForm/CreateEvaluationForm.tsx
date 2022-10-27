@@ -1,6 +1,7 @@
 import Evaluation from "../../model/Evatuation";
 import {ChangeEvent, FormEvent, useState} from "react";
 import axios from "axios";
+import './createEvaluationFormStyled.css';
 
 const url = "/api/evaluation";
 
@@ -12,6 +13,7 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
 
 
     const emptyEvaluation : Evaluation = {
+        headCategory : "",
         category : "",
         inCategoryNum : 0,
         categoryImg : "",
@@ -51,7 +53,20 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
 
 
     return(
-        <form onSubmit={handleSubmit}>
+        <section>
+
+
+        <form className={"form"} onSubmit={handleSubmit}>
+
+            <label htmlFor={"headCategory"}>Kategorie:
+                <input
+                    type={"text"}
+                    name={"headCategory"}
+                    onChange={handleChange}
+                    value={evaluation.headCategory}
+                    placeholder={"Kategorie"}
+                />
+            </label>
 
             <label htmlFor={"category"}>Kategorie:
                 <input
@@ -163,68 +178,11 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
                 />
             </label>
 
-            <label htmlFor={"done"}>Erledigt:
-                <input
-                    type={"checkbox"}
-                    name={"done"}
-                    onChange={handleChange}
-                    checked={evaluation.done}
-
-                />
-            </label>
-
-            <label htmlFor={"respPerson"}>Beauftragte Person:
-                <input
-                    type={"text"}
-                    name={"respPerson"}
-                    onChange={handleChange}
-                    value={evaluation.respPerson}
-                    placeholder={"Vor- und Nachname"}
-                />
-            </label>
-
-            <label htmlFor={"doneTil"}>Zu erledigen bis:
-                <input
-                    type={"date"}
-                    name={"doneTil"}
-                    onChange={handleChange}
-                    value={evaluation.doneTil}
-                    placeholder={"Datum"}
-                />
-            </label>
-
-            <label htmlFor={"controlDone"}>Kontrolle durch:
-                <input
-                    type={"text"}
-                    name={"controlDone"}
-                    onChange={handleChange}
-                    value={evaluation.controlDone}
-                    placeholder={"Vor- und Nachname"}
-                />
-            </label>
-
-            <label htmlFor={"control"}>Wurde kontrolliert:
-                <input
-                    type={"checkbox"}
-                    name={"control"}
-                    onChange={handleChange}
-                    checked={evaluation.control}
-
-                />
-            </label>
-
-            <label htmlFor={"comments"}>Kommentar:
-                <input
-                    type={"text"}
-                    name={"comments"}
-                    onChange={handleChange}
-                    value={evaluation.comments}
-                    placeholder={"Kommentar"}
-                />
-            </label>
-
+            <label htmlFor={"submit"}>Absenden:
             <input type={"submit"}/>
+            </label>
         </form>
+        </section>
     )
 
 }

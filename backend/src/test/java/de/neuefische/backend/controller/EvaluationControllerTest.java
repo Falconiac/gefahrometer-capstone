@@ -76,7 +76,6 @@ class EvaluationControllerTest {
                     "subListItem3":"test",
                     "subListItem4":"test",
                     "subListItem5":"test",
-                    "subList":[],
                     "done":false,
                     "respPerson":"test",
                     "doneTil": "test",

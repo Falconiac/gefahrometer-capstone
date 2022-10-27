@@ -13,6 +13,7 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
 
 
     const emptyEvaluation : Evaluation = {
+        id:"",
         headCategory : "",
         category : "",
         inCategoryNum : 0,

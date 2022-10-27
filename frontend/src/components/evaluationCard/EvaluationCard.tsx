@@ -1,4 +1,4 @@
-import User from "../../model/User";
+import './EvaluationCardStyled.css';
 import Evaluation from "../../model/Evatuation";
 
 

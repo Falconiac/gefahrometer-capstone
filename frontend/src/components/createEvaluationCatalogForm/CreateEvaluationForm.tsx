@@ -58,7 +58,7 @@ export default function CreateEvaluationForm(props : CreateEvaluationFormProps){
 
         <form className={"form"} onSubmit={handleSubmit}>
 
-            <label htmlFor={"headCategory"}>Kategorie:
+            <label htmlFor={"headCategory"}>Hauptkategorie:
                 <input
                     type={"text"}
                     name={"headCategory"}

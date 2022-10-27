@@ -5,6 +5,7 @@ import "./AdminUserSection.css";
 import User from "../../model/User";
 import useEvaluation from "../../hooks/useEvaluation";
 import CreateEvaluationForm from "../createEvaluationCatalogForm/CreateEvaluationForm";
+import AdminEvaluationCheatSheet from "../adminEvaluationSection/AdminEvaluationCheatSheet";
 
 
 
@@ -28,6 +29,8 @@ export default function AdminUserSection(){
             })}
             </div>
         </section>
+
+            <AdminEvaluationCheatSheet/>
 
             <CreateEvaluationForm reloadEvaluations={getEvaluationCatalog}/>
 

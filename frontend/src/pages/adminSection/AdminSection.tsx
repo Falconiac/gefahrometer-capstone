@@ -1,19 +1,20 @@
-import CreateUserForm from "../createUserForm/CreateUserForm";
+import CreateUserForm from "../../components/createUserForm/CreateUserForm";
 import useUsers from "../../hooks/useUsers";
-import UserCard from "../userCard/UserCard";
-import "./AdminUserSection.css";
+import UserCard from "../../components/userCard/UserCard";
+import "./AdminSection.css";
 import User from "../../model/User";
 import useEvaluation from "../../hooks/useEvaluation";
-import CreateEvaluationForm from "../createEvaluationCatalogForm/CreateEvaluationForm";
-import AdminEvaluationCheatSheet from "../adminEvaluationSection/AdminEvaluationCheatSheet";
+import CreateEvaluationForm from "../../components/createEvaluationCatalogForm/CreateEvaluationForm";
+import AdminEvaluationCheatSheet from "../../components/adminEvaluationSection/AdminEvaluationCheatSheet";
 import Evaluation from "../../model/Evatuation";
-import EvaluationCard from "../evaluationCard/EvaluationCard";
+import EvaluationCard from "../../components/evaluationCard/EvaluationCard";
+import {NavLink} from "react-router-dom";
 
 
 
 
 
-export default function AdminUserSection(){
+export default function AdminSection(){
 
 
     const {users, getUsers} = useUsers();
@@ -21,6 +22,9 @@ export default function AdminUserSection(){
 
     return(
         <>
+            <NavLink to={"/"}>Home</NavLink>
+            <NavLink to={"/dangerZone"}>Beurteilungsverwaltung</NavLink>
+
         <section className={"adminUserSection"}>
 
             <CreateUserForm reloadUsers={getUsers}/>

@@ -7,13 +7,14 @@ img{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    max-width: 380px;
-    max-height: 600px;
+    min-width: 379px;
+    max-width: 381px;
+    height: 600px;
     border: 2px solid blue;
     border-radius: 0.5em;
     background-color: white;
     color: #282c34;
-    margin: 0 auto;
+    margin: 1em;
     overflow-y: scroll;
 }
 

@@ -24,6 +24,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

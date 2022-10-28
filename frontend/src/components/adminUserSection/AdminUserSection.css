@@ -20,6 +20,19 @@
     align-items: center;
     gap: 1em;
     overflow-x: scroll;
+}
+
+.evaList{
+
+    border: 2px solid white;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+    overflow-x: scroll;
+    width: 90%;
 
 }
 

@@ -1,0 +1,33 @@
+.evaField{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.cheatsheet{
+    height: 50vh;
+    overflow-y: scroll;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: scroll;
+    justify-content: center;
+    gap: 1em;
+    margin: 0 auto;
+    border: 2px solid white;
+    border-radius: 1em;
+}
+
+.categoryField{
+    border: 2px solid white;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

@@ -15,7 +15,7 @@ export default function EvaluationCard(props:EvaluationCardProps){
             <h2>{props.eva.headCategory}</h2>
             <p>{props.eva.category}</p>
             <p>{props.eva.inCategoryNum}</p>
-            <img src={props.eva.categoryImg} alt={"Category-Image"}/>
+            <img src={props.eva.categoryImg} alt={"Category"}/>
             <p>{props.eva.title}</p>
             <p>{props.eva.txtBlock}</p>
             <p>{props.eva.subTxt}</p>

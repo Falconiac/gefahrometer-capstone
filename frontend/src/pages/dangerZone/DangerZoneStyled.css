@@ -1,0 +1,9 @@
+main{
+    box-sizing: border-box;
+    margin: 3em 0;
+    width: 100vw;
+    height: 96vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

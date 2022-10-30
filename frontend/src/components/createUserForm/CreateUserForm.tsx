@@ -9,9 +9,9 @@ const url = "/api/user"
 
 export default function CreateUserForm(){
 
-    const [formSite, setFormSite] = useState(0);
+    const [formNum, setFormNum] = useState(0);
 
-    const emptyUser : User = {
+    const emptyNewUser : User = {
         mail : "",
         accountName : "",
         password : "",
@@ -28,53 +28,53 @@ export default function CreateUserForm(){
         medicalCareLocation : ""
     }
 
-    const [user, setUser] = useState(emptyUser);
+
+    const [newUser, setNewUser] = useState(emptyNewUser);
 
     function handleChange(event : ChangeEvent<HTMLInputElement>){
 
         const name = event.target.name;
         const newValue = event.target.value;
 
-        setUser((prevUser) => ({...prevUser,
+        setNewUser((prevUser) => ({...prevUser,
             [name]:newValue}))
 
     }
 
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        axios.post(url, {...user})
+        axios.post(url, {...newUser})
     }
-
 
     return(
         <section className={"formSection"}>
 
             <form className={"userForm"} onSubmit={handleSubmit}>
 
-                {formSite === 0 && <article>
+                {formNum === 0 && <article>
                     <h2>Registrierung</h2>
                     <label htmlFor={"mail"}>Mail:
                         <input
                             type={"email"}
                             name={"mail"}
                             onChange={handleChange}
-                            value={user.mail}
+                            value={newUser.mail}
                             placeholder={"zum@beispiel.de"}
                         />
                     </label>
                     <button onClick={(event)=>{
                         event.preventDefault();
-                        setFormSite(formSite+1)
+                        setFormNum(formNum+1)
                     }}>Weiter</button>
                 </article>}
 
-                {formSite === 1 && <article>
+                {formNum === 1 && <article>
                     <label htmlFor={"accountName"}>Benutzername:
                         <input
                             type={"text"}
                             name={"accountName"}
                             onChange={handleChange}
-                            value={user.accountName}
+                            value={newUser.accountName}
                             placeholder={"Benutzername"}
                         />
                     </label>
@@ -84,27 +84,27 @@ export default function CreateUserForm(){
                             type={"password"}
                             name={"password"}
                             onChange={handleChange}
-                            value={user.password}
+                            value={newUser.password}
                             placeholder={"XxXxXxXxX"}
                         />
                     </label>
                     <button onClick={(event)=>{
                         event.preventDefault();
-                        setFormSite(formSite-1)
+                        setFormNum(formNum-1)
                     }}>Zurück</button>
                     <button onClick={(event)=>{
                         event.preventDefault();
-                        setFormSite(formSite+1)
+                        setFormNum(formNum+1)
                     }}>Weiter</button>
                 </article>}
 
-                {formSite === 2 && <article>
+                {formNum === 2 && <article>
                     <label htmlFor={"manageFirstName"}>Vorname:
                         <input
                             type={"text"}
                             name={"manageFirstName"}
                             onChange={handleChange}
-                            value={user.manageFirstName}
+                            value={newUser.manageFirstName}
                             placeholder={"Max"}
                         />
                     </label>
@@ -113,7 +113,7 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"manageLastName"}
                             onChange={handleChange}
-                            value={user.manageLastName}
+                            value={newUser.manageLastName}
                             placeholder={"Mustermann"}
                         />
                     </label>
@@ -122,7 +122,7 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"companyName"}
                             onChange={handleChange}
-                            value={user.companyName}
+                            value={newUser.companyName}
                             placeholder={"Musterfirma"}
                         />
                     </label>
@@ -131,7 +131,7 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"companyStreet"}
                             onChange={handleChange}
-                            value={user.companyStreet}
+                            value={newUser.companyStreet}
                             placeholder={"Musterstraße 1"}
                         />
                     </label>
@@ -140,7 +140,7 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"companyZip"}
                             onChange={handleChange}
-                            value={user.companyZip}
+                            value={newUser.companyZip}
                             placeholder={"12345"}
                         />
                     </label>
@@ -149,28 +149,28 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"companyLocation"}
                             onChange={handleChange}
-                            value={user.companyLocation}
+                            value={newUser.companyLocation}
                             placeholder={"Musterhausen"}
                         />
                     </label>
                     <button onClick={(event)=>{
                         event.preventDefault();
-                        setFormSite(formSite-1)
+                        setFormNum(formNum-1)
                     }}>Zurück</button>
                     <button onClick={(event)=>{
                         event.preventDefault();
-                        setFormSite(formSite+1)
+                        setFormNum(formNum+1)
                     }}>Weiter</button>
 
                 </article>}
 
-                {formSite === 3 && <article>
+                {formNum === 3 && <article>
                     <label htmlFor={"medicalCareName"}>Betriebsarzt:
                         <input
                             type={"text"}
                             name={"medicalCareName"}
                             onChange={handleChange}
-                            value={user.medicalCareName}
+                            value={newUser.medicalCareName}
                             placeholder={"Dr. Zufall"}
                         />
                     </label>
@@ -179,7 +179,7 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"medicalCareStreet"}
                             onChange={handleChange}
-                            value={user.medicalCareStreet}
+                            value={newUser.medicalCareStreet}
                             placeholder={"Zufallsplatz 2"}
                         />
                     </label>
@@ -188,7 +188,7 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"medicalCareZip"}
                             onChange={handleChange}
-                            value={user.medicalCareZip}
+                            value={newUser.medicalCareZip}
                             placeholder={"54321"}
                         />
                     </label>
@@ -197,13 +197,13 @@ export default function CreateUserForm(){
                             type={"text"}
                             name={"medicalCareLocation"}
                             onChange={handleChange}
-                            value={user.medicalCareLocation}
+                            value={newUser.medicalCareLocation}
                             placeholder={"Zufallhausen"}
                         />
                     </label>
                     <button onClick={(event)=>{
                         event.preventDefault();
-                        setFormSite(formSite-1)
+                        setFormNum(formNum-1)
                     }}>Zurück</button>
                     <input type="submit"/>
                 </article>}

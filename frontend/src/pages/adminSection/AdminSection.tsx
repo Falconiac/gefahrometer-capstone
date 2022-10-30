@@ -1,4 +1,4 @@
-import CreateUserForm from "../../components/createUserForm/CreateUserForm";
+import CreateUserFormAdmin from "../../components/createUserForm/CreateUserFormAdmin";
 import useUsers from "../../hooks/useUsers";
 import UserCard from "../../components/userCard/UserCard";
 import "./AdminSection.css";
@@ -27,7 +27,7 @@ export default function AdminSection(){
 
         <section className={"adminUserSection"}>
 
-            <CreateUserForm reloadUsers={getUsers}/>
+            <CreateUserFormAdmin reloadUsers={getUsers}/>
 
             <div className={"companyList"}>
             {users.map((user : User) => {

@@ -1,9 +1,9 @@
 .adminUserSection{
 
     box-sizing: border-box;
-    margin: 0;
+    margin: 3em 0;
     width: 100vw;
-    height: 100vh;
+    height: 96vh;
     display: flex;
     flex-direction: row;
     align-items: center;

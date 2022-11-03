@@ -1,8 +1,12 @@
 
-export default function DangerZone(){
+type DangerZoneProps = {
+    thisUser : string;
+}
+
+export default function DangerZone(props: DangerZoneProps){
     return (
         <main>
-        <h2>Welcome to hell !!!</h2>
+        <h2>Hallo {props.thisUser} !</h2>
         </main>
     )
 }

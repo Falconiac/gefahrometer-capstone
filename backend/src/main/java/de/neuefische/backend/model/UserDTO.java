@@ -13,20 +13,25 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
 
-    private String mail;
     private String accountName;
-    private String password;
+    private String mail;
+    private String passwordHash;
     private String manageFirstName;
     private String manageLastName;
     private String companyName;
     private String companyStreet;
     private String companyZip;
     private String companyLocation;
-    private List<String> employees;
+    private String employee1;
+    private String employee2;
+    private String employee3;
+    private String employee4;
+    private String employee5;
     private String medicalCareName;
     private String medicalCareStreet;
     private String medicalCareZip;
     private String medicalCareLocation;
+    private List<String> roles;
 
 
 }

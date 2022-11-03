@@ -1,8 +1,7 @@
 type User={
-    id?:string;
     mail : string;
     accountName : string;
-    password : string;
+    passwordHash : string;
     manageFirstName : string;
     manageLastName : string;
     companyName : string;

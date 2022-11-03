@@ -1,11 +1,14 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.AppUser;
+import de.neuefische.backend.model.UserDTO;
 import de.neuefische.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -24,13 +27,28 @@ public class UserController {
         return userService.getAllUser();
     }
 
-    @PostMapping
-    public AppUser addNewUser(@RequestBody AppUser appUser){
-        return userService.addUser(appUser);
+    @GetMapping("/login")
+    public String login(){
+        return SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpSession session){
+        session.invalidate();
+    }
+
+
+    @PostMapping("/register")
+    public String addNewUser(@RequestBody UserDTO userDTO){
+        return userService.addUser(userDTO);
+
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable String id) throws Exception {
+    public void delete(@PathVariable String id){
         userService.deleteUser(id);
     }
 

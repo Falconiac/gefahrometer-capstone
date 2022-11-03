@@ -41,7 +41,8 @@ class AppUserControllerTest {
     @Test
     void getAllUserShouldReturnAllItemsFromDB() throws Exception {
         //GIVEN
-        userRepo.save(new AppUser("1", "a@b.de",
+        userRepo.save(new AppUser("Test1", "a@b.de",
+                "$2a$10$gyY99R.acTIFTkdP7gw41OYBfgQPHvHV8kF8d9HMHOjGi4FbnGqaG",
                 "Test1",
                 "Test1",
                 "Test1",
@@ -49,31 +50,39 @@ class AppUserControllerTest {
                 "Test1",
                 "Test1",
                 "Test1",
+                "Emp2",
+                "Emp3",
+                "Emp4",
+                "Emp5",
                 "Test1",
-                List.of(),
                 "Test1",
                 "Test1",
                 "Test1",
-                "Test1"));
+                List.of("USER")
+                ));
 
         String expectedJSON = """
                 [
                 {
-                    "id":"1",
-                    "mail":"a@b.de",
                     "accountName":"Test1",
-                    "password":"Test1",
+                    "mail":"a@b.de",
+                    "passwordHash":"$2a$10$gyY99R.acTIFTkdP7gw41OYBfgQPHvHV8kF8d9HMHOjGi4FbnGqaG",
                     "manageFirstName":"Test1",
                     "manageLastName":"Test1",
                     "companyName":"Test1",
                     "companyStreet":"Test1",
                     "companyZip":"Test1",
                     "companyLocation":"Test1",
-                    "employees": [],
+                    "employee1": "Emp1",
+                    "employee2": "Emp2",
+                    "employee3": "Emp3",
+                    "employee4": "Emp4",
+                    "employee5": "Emp5",
                     "medicalCareName":"Test1",
                     "medicalCareStreet":"Test1",
                     "medicalCareZip":"Test1",
-                    "medicalCareLocation":"Test1"
+                    "medicalCareLocation":"Test1",
+                    "roles": ["USER"]
                 }
                 ]
                 """;
@@ -143,7 +152,8 @@ class AppUserControllerTest {
     @DirtiesContext
     @Test
     void deleteUser() throws Exception{
-        userRepo.save(new AppUser("1", "a@b.de",
+        userRepo.save(new AppUser("Test1", "a@b.de",
+                "$2a$10$gyY99R.acTIFTkdP7gw41OYBfgQPHvHV8kF8d9HMHOjGi4FbnGqaG",
                 "Test1",
                 "Test1",
                 "Test1",
@@ -151,12 +161,16 @@ class AppUserControllerTest {
                 "Test1",
                 "Test1",
                 "Test1",
+                "Emp2",
+                "Emp3",
+                "Emp4",
+                "Emp5",
                 "Test1",
-                List.of(),
                 "Test1",
                 "Test1",
                 "Test1",
-                "Test1"));
+                List.of("USER")
+        ));
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .delete("/api/user/{id}","1")

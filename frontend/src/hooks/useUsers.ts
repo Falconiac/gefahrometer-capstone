@@ -3,6 +3,8 @@ import axios from "axios";
 
 export default function useUsers(){
 
+    const [me, setMe] = useState("")
+
     const [users, setUsers] = useState([]);
 
     useEffect(()=>{
@@ -18,7 +20,7 @@ export default function useUsers(){
     }
 
     return(
-        {users, getUsers}
+        {users, getUsers, me, setMe}
         )
 
 }

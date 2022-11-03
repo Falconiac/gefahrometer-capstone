@@ -22,7 +22,7 @@ class HelloWorldControllerTest {
 
         //When
         mockMvc.perform(
-               MockMvcRequestBuilders.get("/api/hello"))
+               MockMvcRequestBuilders.get("/hello"))
                 .andExpect(status().is(200))
                         .andExpect(content().string("Hello World"));
 

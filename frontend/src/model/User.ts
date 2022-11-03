@@ -8,7 +8,11 @@ type User={
     companyStreet : string;
     companyZip : string;
     companyLocation : string;
-    employees : Array<string>;
+    employee1: string;
+    employee2: string;
+    employee3: string;
+    employee4: string;
+    employee5: string;
     medicalCareName : string;
     medicalCareStreet : string;
     medicalCareZip : string;

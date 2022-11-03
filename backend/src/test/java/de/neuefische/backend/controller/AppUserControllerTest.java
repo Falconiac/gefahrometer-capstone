@@ -33,9 +33,6 @@ class AppUserControllerTest {
     @Autowired
     private UserRepo userRepo;
 
-    @MockBean
-    private IdService idService;
-
 
     @DirtiesContext
     @Test
@@ -49,7 +46,7 @@ class AppUserControllerTest {
                 "Test1",
                 "Test1",
                 "Test1",
-                "Test1",
+                "Emp1",
                 "Emp2",
                 "Emp3",
                 "Emp4",
@@ -98,54 +95,37 @@ class AppUserControllerTest {
     @Test
     void addNewUser() throws Exception {
         //GIVEN
-        when(idService.generateID()).thenReturn("1");
-
         String requestBody = """
                 {
-                    "mail":"a@b.de",
-                    "accountName":"Test1",
-                    "password":"Test1",
-                    "manageFirstName":"Test1",
-                    "manageLastName":"Test1",
-                    "companyName":"Test1",
-                    "companyStreet":"Test1",
-                    "companyZip":"Test1",
-                    "companyLocation":"Test1",
-                    "employees":["Herbert"],
-                    "medicalCareName":"Test1",
-                    "medicalCareStreet":"Test1",
-                    "medicalCareZip":"Test1",
-                    "medicalCareLocation":"Test1"
+                "accountName":"Test2",
+                "mail":"a@b.de",
+                "passwordHash":"$2a$10$gyY99R.acTIFTkdP7gw41OYBfgQPHvHV8kF8d9HMHOjGi4FbnGqaG",
+                "manageFirstName":"Test1",
+                "manageLastName":"Test1",
+                "companyName":"Test1",
+                "companyStreet":"Test1",
+                "companyZip":"Test1",
+                "companyLocation":"Test1",
+                "employee1": "Emp1",
+                "employee2": "Emp2",
+                "employee3": "Emp3",
+                "employee4": "Emp4",
+                "employee5": "Emp5",
+                "medicalCareName":"Test1",
+                "medicalCareStreet":"Test1",
+                "medicalCareZip":"Test1",
+                "medicalCareLocation":"Test1"
                 }
                 """;
 
-        String expectedJSON = """
-                {
-                    "id":"1",
-                    "mail":"a@b.de",
-                    "accountName":"Test1",
-                    "password":"Test1",
-                    "manageFirstName":"Test1",
-                    "manageLastName":"Test1",
-                    "companyName":"Test1",
-                    "companyStreet":"Test1",
-                    "companyZip":"Test1",
-                    "companyLocation":"Test1",
-                    "employees": ["Herbert"],
-                    "medicalCareName":"Test1",
-                    "medicalCareStreet":"Test1",
-                    "medicalCareZip":"Test1",
-                    "medicalCareLocation":"Test1"
-                }
-                """;
 
         //WHEN & THEN
         mockMvc.perform(
-                post("/api/user")
+                post("/api/user/register")
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .content(requestBody))
                 .andExpect(status().isOk())
-                .andExpect(content().json(expectedJSON));
+                .andExpect(content().string("Test2"));
 
     }
 
@@ -173,7 +153,7 @@ class AppUserControllerTest {
         ));
 
         this.mockMvc.perform(MockMvcRequestBuilders
-                .delete("/api/user/{id}","1")
+                .delete("/api/user/{id}","Test1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

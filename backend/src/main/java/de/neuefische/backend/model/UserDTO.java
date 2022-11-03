@@ -32,6 +32,4 @@ public class UserDTO {
     private String medicalCareZip;
     private String medicalCareLocation;
     private List<String> roles;
-
-
 }

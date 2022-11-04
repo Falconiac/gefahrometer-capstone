@@ -1,7 +1,9 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import User from "../model/User";
 
 export default function useUsers(){
+
 
     const [me, setMe] = useState("")
 

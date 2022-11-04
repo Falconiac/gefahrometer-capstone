@@ -1,7 +1,7 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import "./Sidebar.css";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiSettings} from "react-icons/fi";
 import axios from "axios";
 import useUsers from "../../hooks/useUsers";
 
@@ -24,6 +24,9 @@ export default function SideBar(props:SideBarProps){
 
             <a className="menu-item" href="#/">
                 Home
+            </a>
+            <a className="menu-item" href="#/updateUser">
+                Ihre Daten <FiSettings/>
             </a>
             <a className="menu-item" href="#/admin">
                 Admin

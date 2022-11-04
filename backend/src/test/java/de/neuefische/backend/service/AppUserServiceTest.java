@@ -1,7 +1,6 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.AppUser;
-import de.neuefische.backend.model.UserDTO;
 import de.neuefische.backend.repository.UserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,7 +46,7 @@ class AppUserServiceTest {
 
     @Test
     void addUserTest() {
-        UserDTO appUser1 = UserDTO.builder()
+        AppUser appUser1 = AppUser.builder()
                 .accountName("Test")
                 .build();
 

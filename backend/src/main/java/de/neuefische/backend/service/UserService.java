@@ -1,7 +1,6 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.AppUser;
-import de.neuefische.backend.model.UserDTO;
 import de.neuefische.backend.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,32 +25,14 @@ public class UserService {
 
     public List<AppUser> getAllUser(){return uRepo.findAll();}
 
-    public String addUser(UserDTO newAppUser){
+    public String addUser(AppUser newAppUser){
 
-    String hashPassword = passwordEncoder.encode(newAppUser.getAccountName());
+    String hashPassword = passwordEncoder.encode(newAppUser.getPasswordHash());
 
-    AppUser appUser = new AppUser();
-    appUser.setAccountName(newAppUser.getAccountName());
-    appUser.setMail(newAppUser.getMail());
-    appUser.setPasswordHash(hashPassword);
-    appUser.setManageFirstName(newAppUser.getManageFirstName());
-    appUser.setManageLastName(newAppUser.getManageLastName());
-    appUser.setCompanyName(newAppUser.getCompanyName());
-    appUser.setCompanyStreet(newAppUser.getCompanyStreet());
-    appUser.setCompanyZip(newAppUser.getCompanyZip());
-    appUser.setCompanyLocation(newAppUser.getCompanyLocation());
-    appUser.setEmployee1(newAppUser.getEmployee1());
-    appUser.setEmployee2(newAppUser.getEmployee2());
-    appUser.setEmployee3(newAppUser.getEmployee3());
-    appUser.setEmployee4(newAppUser.getEmployee4());
-    appUser.setEmployee5(newAppUser.getEmployee5());
-    appUser.setMedicalCareName(newAppUser.getMedicalCareName());
-    appUser.setMedicalCareStreet(newAppUser.getMedicalCareStreet());
-    appUser.setMedicalCareZip(newAppUser.getMedicalCareZip());
-    appUser.setMedicalCareLocation(newAppUser.getMedicalCareLocation());
-    appUser.setRoles(List.of("USER"));
+    newAppUser.setPasswordHash(hashPassword);
+    newAppUser.setRoles(List.of("USER"));
 
-     AppUser persistedAppUser = uRepo.save(appUser);
+     AppUser persistedAppUser = uRepo.save(newAppUser);
 
      return persistedAppUser.getAccountName();
     }

@@ -1,7 +1,6 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.AppUser;
-import de.neuefische.backend.model.UserDTO;
 import de.neuefische.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,8 +41,8 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody UserDTO userDTO){
-        return userService.addUser(userDTO);
+    public String addNewUser(@RequestBody AppUser appUser){
+        return userService.addUser(appUser);
 
     }
 

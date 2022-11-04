@@ -3,11 +3,14 @@ package de.neuefische.backend.service;
 import de.neuefische.backend.model.AppUser;
 import de.neuefische.backend.repository.UserRepo;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -15,7 +18,6 @@ class AppUserServiceTest {
 
     UserRepo userRepo = mock(UserRepo.class);
 
-//    IdService idService = mock(IdService.class);
     PasswordEncoder passwordEncoder;
 
     private final UserService userService = new UserService(userRepo, passwordEncoder);
@@ -64,6 +66,20 @@ class AppUserServiceTest {
 
     }
 
+    @Test
+     void emptyPasswordIsNotSameLikeNeeded() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String result = encoder.encode("password");
+        assertThat(encoder.matches("", result)).isFalse();
+    }
+
+    @Test
+    void encodingIsCorrect() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String result = encoder.encode("password");
+        assertThat(result.equals("password")).isFalse();
+        assertThat(encoder.matches("password", result)).isTrue();
+    }
     @Test
     void deleteUserTest() throws Exception {
 

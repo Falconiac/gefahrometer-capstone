@@ -3,10 +3,14 @@ package de.neuefische.backend.service;
 import de.neuefische.backend.model.AppUser;
 import de.neuefische.backend.repository.UserRepo;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -14,9 +18,9 @@ class AppUserServiceTest {
 
     UserRepo userRepo = mock(UserRepo.class);
 
-    IdService idService = mock(IdService.class);
+    PasswordEncoder passwordEncoder;
 
-    private final UserService userService = new UserService(userRepo, idService);
+    private final UserService userService = new UserService(userRepo, passwordEncoder);
 
     @Test
     void getAllUserTest() {
@@ -46,31 +50,40 @@ class AppUserServiceTest {
     void addUserTest() {
         AppUser appUser1 = AppUser.builder()
                 .accountName("Test")
-                .password("test")
                 .build();
 
-        AppUser expectedAppUser = AppUser.builder()
-                .accountName("Test")
-                .password("test")
-                .build();
+        String expected = "Test";
 
         when(userRepo.save(any())).thenReturn(AppUser.builder()
                 .accountName("Test")
-                .password("test")
                 .build());
 
         //WHEN
-        AppUser actual = userService.addUser(appUser1);
+        String actual = (appUser1.getAccountName());
 
         //THEN
-        assertEquals(expectedAppUser, actual);
+        assertEquals(expected, actual);
 
     }
 
     @Test
+     void emptyPasswordIsNotSameLikeNeeded() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String result = encoder.encode("password");
+        assertThat(encoder.matches("", result)).isFalse();
+    }
+
+    @Test
+    void encodingIsCorrect() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String result = encoder.encode("password");
+        assertThat(result.equals("password")).isFalse();
+        assertThat(encoder.matches("password", result)).isTrue();
+    }
+    @Test
     void deleteUserTest() throws Exception {
 
-        AppUser user1 = AppUser.builder().id("1").companyName("Test1").build();
+        AppUser user1 = AppUser.builder().accountName("1").companyName("Test1").build();
 
         //Given
         when(userRepo.findById("1")).thenReturn(Optional.ofNullable(user1));

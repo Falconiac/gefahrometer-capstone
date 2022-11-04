@@ -14,14 +14,18 @@ export default function CreateUserForm(){
     const emptyNewUser : User = {
         mail : "",
         accountName : "",
-        password : "",
+        passwordHash : "",
         manageFirstName : "",
         manageLastName : "",
         companyName : "",
         companyStreet : "",
         companyZip : "",
         companyLocation : "",
-        employees : [],
+        employee1 : "",
+        employee2 : "",
+        employee3 : "",
+        employee4 : "",
+        employee5 : "",
         medicalCareName : "",
         medicalCareStreet : "",
         medicalCareZip : "",
@@ -43,7 +47,7 @@ export default function CreateUserForm(){
 
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        axios.post(url, {...newUser})
+        axios.post(url + "/register", {...newUser})
     }
 
     return(
@@ -79,13 +83,13 @@ export default function CreateUserForm(){
                         />
                     </label>
 
-                    <label htmlFor={"password"}>Passwort:
+                    <label htmlFor={"passwordHash"}>Passwort:
                         <input
                             type={"password"}
-                            name={"password"}
+                            name={"passwordHash"}
                             onChange={handleChange}
-                            value={newUser.password}
-                            placeholder={"XxXxXxXxX"}
+                            value={newUser.passwordHash}
+
                         />
                     </label>
                     <button onClick={(event)=>{
@@ -205,7 +209,7 @@ export default function CreateUserForm(){
                         event.preventDefault();
                         setFormNum(formNum-1)
                     }}>Zurück</button>
-                    <input type="submit"/>
+                    <label htmlFor={"submit"}><input name={"submit"} type="submit"/></label>
                 </article>}
 
             </form>

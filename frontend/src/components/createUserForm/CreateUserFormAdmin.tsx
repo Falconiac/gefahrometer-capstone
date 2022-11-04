@@ -17,14 +17,18 @@ export default function CreateUserFormAdmin(props: CreateUserFormProps){
     const emptyUser : User = {
         mail : "",
         accountName : "",
-        password : "",
+        passwordHash : "",
         manageFirstName : "",
         manageLastName : "",
         companyName : "",
         companyStreet : "",
         companyZip : "",
         companyLocation : "",
-        employees : [],
+            employee1 : "",
+            employee2 : "",
+            employee3 : "",
+            employee4 : "",
+            employee5 : "",
         medicalCareName : "",
         medicalCareStreet : "",
         medicalCareZip : "",
@@ -88,7 +92,7 @@ export default function CreateUserFormAdmin(props: CreateUserFormProps){
                         type={"password"}
                         name={"password"}
                         onChange={handleChange}
-                        value={user.password}
+                        value={user.passwordHash}
                         placeholder={"XxXxXxXxX"}
                     />
                 </label>

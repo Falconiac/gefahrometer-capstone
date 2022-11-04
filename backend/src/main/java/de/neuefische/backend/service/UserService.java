@@ -3,6 +3,7 @@ package de.neuefische.backend.service;
 import de.neuefische.backend.model.AppUser;
 import de.neuefische.backend.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,20 +14,27 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepo uRepo;
-    private final IdService idService;
+    private final PasswordEncoder passwordEncoder;
 
-@Autowired
-    public UserService(UserRepo uRepo, IdService idService) {
+    @Autowired
+    public UserService(UserRepo uRepo, PasswordEncoder passwordEncoder) {
         this.uRepo = uRepo;
-        this.idService = idService;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
     public List<AppUser> getAllUser(){return uRepo.findAll();}
 
-    public AppUser addUser(AppUser appUser){
-    appUser.setId(idService.generateID());
-    return  uRepo.save(appUser);
+    public String addUser(AppUser newAppUser){
+
+    String hashPassword = passwordEncoder.encode(newAppUser.getPasswordHash());
+
+    newAppUser.setPasswordHash(hashPassword);
+    newAppUser.setRoles(List.of("USER"));
+
+     AppUser persistedAppUser = uRepo.save(newAppUser);
+
+     return persistedAppUser.getAccountName();
     }
 
     public void deleteUser(String id){

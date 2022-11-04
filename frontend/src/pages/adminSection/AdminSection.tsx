@@ -10,12 +10,7 @@ import Evaluation from "../../model/Evatuation";
 import EvaluationCard from "../../components/evaluationCard/EvaluationCard";
 import {NavLink} from "react-router-dom";
 
-
-
-
-
 export default function AdminSection(){
-
 
     const {users, getUsers} = useUsers();
     const { evaluationCatalog,getEvaluationCatalog} = useEvaluation();
@@ -31,7 +26,7 @@ export default function AdminSection(){
 
             <div className={"companyList"}>
             {users.map((user : User) => {
-                return <UserCard key={user.id} user={user} reloadUsers={getUsers}/>
+                return <UserCard key={user.accountName} user={user} reloadUsers={getUsers}/>
             })}
             </div>
         </section>
@@ -49,8 +44,5 @@ export default function AdminSection(){
         </>
 
     )
-
-
-
 }
 

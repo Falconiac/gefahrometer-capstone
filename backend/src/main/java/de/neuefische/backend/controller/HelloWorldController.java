@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//DELETE LATER ON !!! ONLY FOR TEST REASONS
 @RestController
-@RequestMapping("/api/hello")
+@RequestMapping("/hello")
 public class HelloWorldController {
 
 

@@ -50,6 +50,7 @@ class AppUserServiceTest {
     void addUserTest() {
         AppUser appUser1 = AppUser.builder()
                 .accountName("Test")
+                .mail("a@b.de")
                 .build();
 
         String expected = "Test";
@@ -96,4 +97,27 @@ class AppUserServiceTest {
         verify(userRepo).delete(user1);
 
     }
+
+    @Test
+    void updateUserTest() throws Exception {
+
+        AppUser appUser1 = AppUser.builder()
+                .accountName("Test")
+                .mail("a@b.de")
+                .build();
+
+        when(userRepo.save(any())).thenReturn(AppUser.builder()
+                .accountName("Test")
+                .build());
+
+        String expected = "Test updated";
+        String actual = (appUser1.getAccountName() + " updated");
+
+        assertEquals(expected, actual);
+
+
+
+
+    }
 }
+

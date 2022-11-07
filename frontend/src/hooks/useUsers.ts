@@ -36,11 +36,6 @@ export default function useUsers(){
         getAllUsers()
     },[])
 
-   useEffect(()=>{
-        getOneUser(me)
-    },[me])
-
-
     const getAllUsers = () =>{
         axios.get("/api/user")
             .then((response )=>{return response.data})
@@ -48,12 +43,19 @@ export default function useUsers(){
             .catch(error => {console.log(error)})
     }
 
-    const getOneUser = (name : string) =>{
-        axios.get("/api/user/"+name)
-            .then((response )=>{return response.data})
-            .then((user)=> setUser(user))
+  useEffect(()=>{
+        getOneUser();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[me])
+
+    const getOneUser = () =>{
+
+        axios.get("/api/user/"+me)
+            .then((response )=>  response.data)
+            .then((user : User)=> {setUser(user)})
             .catch(error => {console.log(error)})
         console.log(user);
+
     }
 
     return(

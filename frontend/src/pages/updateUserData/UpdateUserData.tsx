@@ -9,6 +9,7 @@ type updateUserDataProps = {
 export default function UpdateUserData(props: updateUserDataProps){
 
 
+
     const [toUpdateUser, setToUpdateUser] = useState(props.thisUser)
 
     function handleChange(event : ChangeEvent<HTMLInputElement>){

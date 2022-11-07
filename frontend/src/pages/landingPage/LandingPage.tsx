@@ -11,6 +11,8 @@ type LandingPageProps = {
 
 export default function Landingpage(props : LandingPageProps){
 
+
+
     const navigate = useNavigate();
 
     const [toggleView, setToggleView ] = useState(true);

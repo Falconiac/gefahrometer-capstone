@@ -80,22 +80,7 @@ public class UserService {
         Optional<AppUser> appUserOptional = uRepo.findById(appUser.getAccountName());
         if(appUserOptional.isPresent()) {
             AppUser foundAppUser = appUserOptional.get();
-
-            foundAppUser.setManageFirstName(appUser.getManageFirstName());
-            foundAppUser.setManageLastName(appUser.getManageLastName());
-            foundAppUser.setCompanyName(appUser.getCompanyName());
-            foundAppUser.setCompanyStreet(appUser.getCompanyStreet());
-            foundAppUser.setCompanyZip(appUser.getCompanyZip());
-            foundAppUser.setCompanyLocation(appUser.getCompanyLocation());
-            foundAppUser.setEmployee1(appUser.getEmployee1());
-            foundAppUser.setEmployee2(appUser.getEmployee2());
-            foundAppUser.setEmployee3(appUser.getEmployee3());
-            foundAppUser.setEmployee4(appUser.getEmployee4());
-            foundAppUser.setEmployee5(appUser.getEmployee5());
-            foundAppUser.setMedicalCareName(appUser.getMedicalCareName());
-            foundAppUser.setMedicalCareStreet(appUser.getMedicalCareStreet());
-            foundAppUser.setMedicalCareZip(appUser.getMedicalCareZip());
-            foundAppUser.setMedicalCareLocation(appUser.getMedicalCareLocation());
+            createAppUserFromDTO(appUser, foundAppUser);
 
             uRepo.save(foundAppUser);
 

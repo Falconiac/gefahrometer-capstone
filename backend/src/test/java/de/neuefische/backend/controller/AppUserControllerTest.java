@@ -153,7 +153,7 @@ class AppUserControllerTest {
         ));
 
         this.mockMvc.perform(MockMvcRequestBuilders
-                .delete("/api/user/{id}","Test1")
+                .delete("/api/user/Test1","Test1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/api/user/logout").authenticated()
                 .antMatchers("/api/user/logout").authenticated()
-                .antMatchers("/api/user/{id}").authenticated()
+                .antMatchers("/api/user/{id}").permitAll()
                 .antMatchers("/api/user/update").permitAll()
                 .antMatchers("/hello").permitAll()
                 .and().httpBasic().and().csrf().disable();

@@ -49,6 +49,47 @@ public class UserService {
 
     }
 
+    public String updateUser(AppUser appUser) {
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+ appUser.getAccountName()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        Optional<AppUser> appUserOptional = uRepo.findById(appUser.getAccountName());
+        if(appUserOptional.isPresent()) {
+            AppUser foundAppUser = appUserOptional.get();
+
+            foundAppUser.setManageFirstName(appUser.getManageFirstName());
+            foundAppUser.setManageLastName(appUser.getManageLastName());
+            foundAppUser.setCompanyName(appUser.getCompanyName());
+            foundAppUser.setCompanyStreet(appUser.getCompanyStreet());
+            foundAppUser.setCompanyZip(appUser.getCompanyZip());
+            foundAppUser.setCompanyLocation(appUser.getCompanyLocation());
+            foundAppUser.setEmployee1(appUser.getEmployee1());
+            foundAppUser.setEmployee2(appUser.getEmployee2());
+            foundAppUser.setEmployee3(appUser.getEmployee3());
+            foundAppUser.setEmployee4(appUser.getEmployee4());
+            foundAppUser.setEmployee5(appUser.getEmployee5());
+            foundAppUser.setMedicalCareName(appUser.getMedicalCareName());
+            foundAppUser.setMedicalCareStreet(appUser.getMedicalCareStreet());
+            foundAppUser.setMedicalCareZip(appUser.getMedicalCareZip());
+            foundAppUser.setMedicalCareLocation(appUser.getMedicalCareLocation());
+
+            uRepo.save(foundAppUser);
+
+            return foundAppUser.getAccountName() +" is updated";
+        }else {
+            throw new NoSuchElementException("User not found.");
+        }
+    }
+
+    public AppUser getOneUserById(String id) {
+        Optional<AppUser> optionalAppUser = uRepo.findById(id);
+        if(optionalAppUser.isPresent()) {
+            AppUser foundAppUser = optionalAppUser.get();
+            return foundAppUser;
+        }else {
+            throw new NoSuchElementException("User not found.");
+        }
+    }
 }
 
 

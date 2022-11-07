@@ -45,7 +45,7 @@ export default function Landingpage(props : LandingPageProps){
 
                     <label htmlFor={"password"}>Passwort:
                         <input
-                            type={"text"}
+                            type={"password"}
                             name={"password"}
                             value={password}
                             placeholder={"Passwort"}

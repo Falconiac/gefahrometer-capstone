@@ -26,9 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/api/user/login").permitAll()
-                .antMatchers("/api/user/logout").permitAll()
                 .antMatchers("/api/user/register").permitAll()
+                .antMatchers("/api/user/login").permitAll()
+                .antMatchers("/api/user/logout").authenticated()
+                .antMatchers("/api/user/logout").authenticated()
+                .antMatchers("/api/user/{id}").authenticated()
+                .antMatchers("/api/user/update").permitAll()
                 .antMatchers("/hello").permitAll()
                 .and().httpBasic().and().csrf().disable();
     }

@@ -34,6 +34,11 @@ public class UserController {
                 .getName();
     }
 
+    @GetMapping("{id}")
+    public AppUser getThisUser(@PathVariable String id){
+        return userService.getOneUserById(id);
+    }
+
     @GetMapping("/logout")
     public void logout(HttpSession session){
         session.invalidate();
@@ -43,7 +48,11 @@ public class UserController {
     @PostMapping("/register")
     public String addNewUser(@RequestBody AppUser appUser){
         return userService.addUser(appUser);
+    }
 
+    @PostMapping("/update")
+    public String updateUser(@RequestBody AppUser appUser){
+        return userService.updateUser(appUser);
     }
 
     @DeleteMapping("{id}")

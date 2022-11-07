@@ -6,47 +6,12 @@ import DangerZone from "./pages/dangerZone/DangerZone";
 import NavBar from "./components/navBar/NavBar";
 import useUsers from "./hooks/useUsers";
 import UpdateUserData from "./pages/updateUserData/UpdateUserData";
-import User from "./model/User";
-import {useEffect, useState} from "react";
-import axios from "axios";
+
 
 function App() {
 
-    const {me, setMe} = useUsers();
+    const { me, setMe, user} = useUsers();
 
-    const thisUser : User = {
-        mail : "",
-        accountName : "",
-        passwordHash : "",
-        manageFirstName : "",
-        manageLastName : "",
-        companyName : "",
-        companyStreet : "",
-        companyZip : "",
-        companyLocation : "",
-        employee1 : "",
-        employee2 : "",
-        employee3 : "",
-        employee4 : "",
-        employee5 : "",
-        medicalCareName : "",
-        medicalCareStreet : "",
-        medicalCareZip : "",
-        medicalCareLocation : ""
-    }
-
-    const [user, setUser] = useState(thisUser);
-
-    useEffect(()=>{
-        getUser()
-    },[])
-
-    const getUser = () =>{
-        axios.get("/api/user/")
-            .then((response )=>{return response.data})
-            .then((users)=> setUser(user))
-            .catch(error => {console.log(error)})
-    }
 
   return (
     <div className="App">

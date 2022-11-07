@@ -36,9 +36,10 @@ export default function useUsers(){
         getAllUsers()
     },[])
 
-    useEffect(()=>{
-        getOneUser()
+   useEffect(()=>{
+        getOneUser(me)
     },[me])
+
 
     const getAllUsers = () =>{
         axios.get("/api/user")
@@ -47,8 +48,8 @@ export default function useUsers(){
             .catch(error => {console.log(error)})
     }
 
-    const getOneUser = () =>{
-        axios.get("/api/user/" + me)
+    const getOneUser = (name : string) =>{
+        axios.get("/api/user/"+name)
             .then((response )=>{return response.data})
             .then((user)=> setUser(user))
             .catch(error => {console.log(error)})
@@ -56,7 +57,7 @@ export default function useUsers(){
     }
 
     return(
-        {users, getAllUsers, me, setMe, user}
+        {users, getAllUsers,getOneUser, me, setMe, user}
         )
 
 }

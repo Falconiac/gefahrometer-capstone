@@ -5,10 +5,13 @@ import Landingpage from "./pages/landingPage/LandingPage";
 import DangerZone from "./pages/dangerZone/DangerZone";
 import NavBar from "./components/navBar/NavBar";
 import useUsers from "./hooks/useUsers";
+import UpdateUserData from "./pages/updateUserData/UpdateUserData";
+
 
 function App() {
 
-    const {me, setMe} = useUsers();
+    const { me, setMe, user} = useUsers();
+
 
   return (
     <div className="App">
@@ -20,6 +23,7 @@ function App() {
                   <Route path={"/"} element={<Landingpage setUser={setMe}/>}/>
                   <Route path={"/admin"} element={<AdminSection />}/>
                   <Route path={"/dangerZone"} element={<DangerZone thisUser={me} />}/>
+                  <Route path={"/updateUser"} element={<UpdateUserData thisUser={user} />}/>
               </Routes>
           </HashRouter>
 

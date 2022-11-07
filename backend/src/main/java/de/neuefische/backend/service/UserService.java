@@ -74,23 +74,31 @@ public class UserService {
 
     }
 
-    public String updateUser(AppUserDTO updated) {
 
-        Optional<AppUser> appUserOptional = uRepo.findById(updated.getAccountName());
+    public String updateUser(AppUserDTO appUser) {
 
+        Optional<AppUser> appUserOptional = uRepo.findById(appUser.getAccountName());
         if(appUserOptional.isPresent()) {
             AppUser foundAppUser = appUserOptional.get();
-            foundAppUser.setMail(updated.getMail());
-            createAppUserFromDTO(updated, foundAppUser);
+            createAppUserFromDTO(appUser, foundAppUser);
 
             uRepo.save(foundAppUser);
 
-            return foundAppUser.getAccountName() + " updated";
+            return foundAppUser.getAccountName() +" is updated";
         }else {
             throw new NoSuchElementException("User not found.");
         }
     }
 
+    public AppUser getOneUserById(String id) {
+        Optional<AppUser> optionalAppUser = uRepo.findById(id);
+        if(optionalAppUser.isPresent()) {
+            AppUser foundAppUser = optionalAppUser.get();
+            return foundAppUser;
+        }else {
+            throw new NoSuchElementException("User not found.");
+        }
+    }
 
 }
 

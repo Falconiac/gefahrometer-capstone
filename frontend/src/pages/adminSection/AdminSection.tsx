@@ -12,7 +12,7 @@ import {NavLink} from "react-router-dom";
 
 export default function AdminSection(){
 
-    const {users, getUsers} = useUsers();
+    const {users, getAllUsers} = useUsers();
     const { evaluationCatalog,getEvaluationCatalog} = useEvaluation();
 
     return(
@@ -22,11 +22,11 @@ export default function AdminSection(){
 
         <section className={"adminUserSection"}>
 
-            <CreateUserFormAdmin reloadUsers={getUsers}/>
+            <CreateUserFormAdmin reloadUsers={getAllUsers}/>
 
             <div className={"companyList"}>
             {users.map((user : User) => {
-                return <UserCard key={user.accountName} user={user} reloadUsers={getUsers}/>
+                return <UserCard key={user.accountName} user={user} reloadUsers={getAllUsers}/>
             })}
             </div>
         </section>

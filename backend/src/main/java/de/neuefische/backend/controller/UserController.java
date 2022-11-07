@@ -35,6 +35,11 @@ public class UserController {
                 .getName();
     }
 
+    @GetMapping("{id}")
+    public AppUser getThisUser(@PathVariable String id){
+        return userService.getOneUserById(id);
+    }
+
     @GetMapping("/logout")
     public void logout(HttpSession session){
         session.invalidate();

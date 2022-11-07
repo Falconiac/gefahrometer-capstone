@@ -1,6 +1,7 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.AppUser;
+import de.neuefische.backend.model.AppUserDTO;
 import de.neuefische.backend.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,20 +23,44 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    private void createAppUserFromDTO(AppUserDTO appUserDTO, AppUser newAppUser) {
+        newAppUser.setManageFirstName(appUserDTO.getManageFirstName());
+        newAppUser.setManageLastName(appUserDTO.getManageLastName());
+        newAppUser.setCompanyName(appUserDTO.getCompanyName());
+        newAppUser.setCompanyStreet(appUserDTO.getCompanyStreet());
+        newAppUser.setCompanyZip(appUserDTO.getCompanyZip());
+        newAppUser.setCompanyLocation(appUserDTO.getCompanyLocation());
+        newAppUser.setEmployee1(appUserDTO.getEmployee1());
+        newAppUser.setEmployee2(appUserDTO.getEmployee2());
+        newAppUser.setEmployee3(appUserDTO.getEmployee3());
+        newAppUser.setEmployee4(appUserDTO.getEmployee4());
+        newAppUser.setEmployee5(appUserDTO.getEmployee5());
+        newAppUser.setMedicalCareName(appUserDTO.getMedicalCareName());
+        newAppUser.setMedicalCareStreet(appUserDTO.getMedicalCareStreet());
+        newAppUser.setMedicalCareZip(appUserDTO.getMedicalCareZip());
+        newAppUser.setMedicalCareLocation(appUserDTO.getMedicalCareLocation());
+    }
+
 
     public List<AppUser> getAllUser(){return uRepo.findAll();}
 
-    public String addUser(AppUser newAppUser){
+    public String addUser(AppUserDTO appUserDTO){
 
-    String hashPassword = passwordEncoder.encode(newAppUser.getPasswordHash());
+    String hashPassword = passwordEncoder.encode(appUserDTO.getPasswordHash());
 
-    newAppUser.setPasswordHash(hashPassword);
-    newAppUser.setRoles(List.of("USER"));
+        AppUser newAppUser = new AppUser();
 
-     AppUser persistedAppUser = uRepo.save(newAppUser);
+        newAppUser.setAccountName(appUserDTO.getAccountName());
+        newAppUser.setMail(appUserDTO.getMail());
+        newAppUser.setPasswordHash(hashPassword);
+        createAppUserFromDTO(appUserDTO, newAppUser);
+        newAppUser.setRoles(List.of("USER"));
+
+        AppUser persistedAppUser = uRepo.save(newAppUser);
 
      return persistedAppUser.getAccountName();
     }
+
 
     public void deleteUser(String id){
     Optional<AppUser> appUserOptional = uRepo.findById(id);
@@ -49,9 +74,8 @@ public class UserService {
 
     }
 
-    public String updateUser(AppUser appUser) {
 
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+ appUser.getAccountName()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    public String updateUser(AppUserDTO appUser) {
 
         Optional<AppUser> appUserOptional = uRepo.findById(appUser.getAccountName());
         if(appUserOptional.isPresent()) {
@@ -90,6 +114,7 @@ public class UserService {
             throw new NoSuchElementException("User not found.");
         }
     }
+
 }
 
 

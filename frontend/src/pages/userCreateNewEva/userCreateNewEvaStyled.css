@@ -1,0 +1,12 @@
+main{
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0;
+    width: 100vw;
+    height: fit-content;
+    align-items: center;
+    justify-content: flex-start;
+
+}

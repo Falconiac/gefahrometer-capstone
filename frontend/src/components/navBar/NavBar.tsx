@@ -11,7 +11,7 @@ export default function NavBar(props: NavBarProps){
     return (
         <nav>
             {props.loggedIn && <div className="App" id="outer-container">
-                <SideBar pageWrapID={"page-wrap"} outerContainerId={"outer-container"} />
+                <SideBar loggedIn={props.loggedIn} pageWrapID={"page-wrap"} outerContainerId={"outer-container"} />
             </div>}
             <img className={"logo"} src={ReactLogo} alt={"Logo"} />
         </nav>

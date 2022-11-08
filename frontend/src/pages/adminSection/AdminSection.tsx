@@ -8,7 +8,6 @@ import CreateEvaluationForm from "../../components/createEvaluationCatalogForm/C
 import AdminEvaluationCheatSheet from "../../components/adminEvaluationSection/AdminEvaluationCheatSheet";
 import Evaluation from "../../model/Evatuation";
 import EvaluationCard from "../../components/evaluationCard/EvaluationCard";
-import {NavLink} from "react-router-dom";
 
 export default function AdminSection(){
 
@@ -17,8 +16,7 @@ export default function AdminSection(){
 
     return(
         <>
-            <NavLink to={"/"}>Home</NavLink>
-            <NavLink to={"/dangerZone"}>Beurteilungsverwaltung</NavLink>
+
 
         <section className={"adminUserSection"}>
 

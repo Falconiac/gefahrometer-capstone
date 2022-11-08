@@ -16,6 +16,6 @@ export default function useEvaluation(){
         getEvaluationCatalog()
     },[])
 
-    return ({evaluationCatalog, getEvaluationCatalog})
+    return {evaluationCatalog, getEvaluationCatalog};
 
 }

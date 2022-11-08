@@ -1,18 +1,23 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import "./Sidebar.css";
-import { FiLogOut, FiSettings} from "react-icons/fi";
+import {FiLogOut, FiSettings, FiPlus, FiDatabase} from "react-icons/fi";
 import axios from "axios";
 import useUsers from "../../hooks/useUsers";
 
 type SideBarProps = {
     pageWrapID : string;
     outerContainerId : string;
+    loggedIn: string;
 }
 
 export default function SideBar(props:SideBarProps){
 
     const {setMe} = useUsers();
+
+    let isMe : boolean;
+
+    isMe = props.loggedIn === "admin";
 
     function handleLogout(){
         axios.get("api/user/logout")
@@ -22,24 +27,31 @@ export default function SideBar(props:SideBarProps){
     return (
         <Menu>
 
-            <a className="menu-item" href="#/">
-                Home
-            </a>
-            <a className="menu-item" href="#/updateUser">
-                Ihre Daten <FiSettings/>
-            </a>
-            <a className="menu-item" href="#/admin">
+            {isMe && <a className="menu-item" href="#/admin">
                 Admin
-            </a>
+            </a>}
+
             <a className="menu-item" href="#/dangerZone">
-                DangerZone
+                Hauptseite
+            </a>
+
+            <a className="menu-item" href="#/evaUserArea">
+                <FiDatabase/> Beurteilungen
+            </a>
+
+            <a className="menu-item" href="#/userCreateNewEva">
+                <FiPlus/> Neue Beurteilung
+            </a>
+
+            <a className="menu-item" href="#/updateUser">
+                <FiSettings/> Ihre Daten
             </a>
 
             <a href={"/"} id={"logout"} className="menu-item" onClick={()=>{
                 handleLogout();
                 window.location.reload();
             }}>
-                Logout <FiLogOut />
+                <FiLogOut /> Logout
             </a>
 
         </Menu>

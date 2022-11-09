@@ -25,10 +25,22 @@ public class EvaluationService {
         return evaluationRepo.findAll();
     }
 
+    public Evaluation findEvaluationByCategoryAndInCategoryNum(String category, Integer number ){
+        return evaluationRepo.findEvaluationByCategoryAndInCategoryNum(category,number)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    public List<Evaluation> findEvaluationsByCategory(String category){
+        return evaluationRepo.findEvaluationsByCategory(category)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
     public Evaluation addEvaluation(Evaluation eva){
         eva.setId(idService.generateID());
         return  evaluationRepo.save(eva);
     }
+
+
 
     public void deleteEvaluation(String id){
         Optional<Evaluation> evaluationOptional = evaluationRepo.findById(id);
@@ -37,7 +49,7 @@ public class EvaluationService {
             Evaluation foundEvaluation = evaluationOptional.get();
             evaluationRepo.delete(foundEvaluation);
         }else {
-            throw new NoSuchElementException("Gef¨¨rdungsbeurteilung nicht gefunden");
+            throw new NoSuchElementException("Beurteilung nicht gefunden");
         }
 
     }

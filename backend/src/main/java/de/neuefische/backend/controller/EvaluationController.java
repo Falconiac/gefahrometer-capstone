@@ -23,6 +23,16 @@ public class EvaluationController {
         return evaluationService.getAllEvaluations();
     }
 
+    @GetMapping("/{category}")
+    public List<Evaluation> getEvaluationByCategoryAndNumber(@PathVariable String category){
+        return evaluationService.findEvaluationsByCategory(category);
+    }
+
+    @GetMapping("/{category}/{number}")
+    public Evaluation getEvaluationByCategoryAndNumber(@PathVariable String category,@PathVariable Integer number){
+        return evaluationService.findEvaluationByCategoryAndInCategoryNum(category,number);
+    }
+
     @PostMapping
     public Evaluation addNewEvaluation(@RequestBody Evaluation eva){
         return evaluationService.addEvaluation(eva);

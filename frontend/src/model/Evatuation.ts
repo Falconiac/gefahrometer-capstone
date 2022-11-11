@@ -12,11 +12,11 @@ type Evaluation={
     subListItem3: string;
     subListItem4: string;
     subListItem5: string;
-    done : false;
+    done : boolean;
     respPerson : string;
     doneTil : string;
     controlDone : string;
-    control : false;
+    control : boolean;
     comments : string;
 }
 

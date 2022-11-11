@@ -1,7 +1,9 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Evaluation from "../model/Evatuation";
 
 export default function useEvaluation(){
+
 
     const [evaluationCatalog, setEvaluationCatalog] = useState([]);
     const [arbeitsschutzOrganisationCatalog, setArbeitsschutzOrganisationCatalog] = useState([]);
@@ -32,6 +34,8 @@ export default function useEvaluation(){
     const [gefLager2, setgefLager2] = useState([]);
     const [tauchLack, settauchLack] = useState([]);
     const [arbVK, setarbVK] = useState([]);
+    const [userCatalog, setUserCatalog] = useState(new Map<number,Evaluation[]>);
+
 
 
     function getEvaluationCatalog() {
@@ -327,6 +331,6 @@ export default function useEvaluation(){
     return {evaluationCatalog,arbeitsschutzOrganisationCatalog,arbeitsschutzBaustelleCatalog,
             aUbvArbUVerk,nutzGerue ,nutzMobGerue,nutzLeit ,hoArbpl, strom,matTrans,gefLager,arbKoerpBel,
             arbHndMas,vibr,hochdWass,taetGef,umgStaub,klBesSpa,entfUnterg,bhf,office,loud,arbHndMas2,
-            taetGef2,sprLack,tfnstrahl,gefLager2,tauchLack,arbVK, getEvaluationCatalog};
+            taetGef2,sprLack,tfnstrahl,gefLager2,tauchLack,arbVK, getEvaluationCatalog, userCatalog, setUserCatalog};
 
 }

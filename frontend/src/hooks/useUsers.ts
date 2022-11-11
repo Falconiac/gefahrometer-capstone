@@ -54,8 +54,6 @@ export default function useUsers(){
             .then((response )=>  response.data)
             .then((user : User)=> {setUser(user)})
             .catch(error => {console.log(error)})
-        console.log(user);
-
     }
 
     return(

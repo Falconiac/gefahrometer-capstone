@@ -2,7 +2,7 @@ import User from "../../model/User";
 import {NavLink} from "react-router-dom";
 import Evaluation from "../../model/Evaluation";
 import "./UserCreateNewEva2Styled.css";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import axios from "axios";
 import UsersEva from "../../model/UsersEva";
 
@@ -13,11 +13,15 @@ type UserCreateNewEva2Props ={
 
 export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
 
+    const [qList, setQList] = useState(Array<Evaluation>)
 
+    useEffect(()=>{
 
-    let evaluationList:Array<Evaluation> = Array();
-
-
+       const eveArray = Array.from(props.catalog, ([name, value]) => ( value ));
+        const flattenedEvas = eveArray.flatMap(eva => eva);
+        setQList(flattenedEvas);
+        setUserEva((prevUserEva)=>{return{...prevUserEva, evaCatalog:flattenedEvas}})
+    },[])
 
     const emptyUserEva : UsersEva = {
         mail : props.thisUser.mail,
@@ -42,21 +46,10 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
         forWhomStreet:"",
         forWhomZip:"",
         forWhomLocation: "",
-        evaCatalog: evaluationList
+        evaCatalog: []
     }
 
     const [userEva, setUserEva] = useState(emptyUserEva);
-
-    function mapCatalog(map:Map<number,Evaluation[]>, arr : Evaluation[]){
-        map.forEach((value) => {
-            value.map((e:Evaluation)=>{
-                arr.push(e);
-            })
-        })
-    }
-
-    mapCatalog(props.catalog,evaluationList);
-
 
 
     function handleChange(event : ChangeEvent<HTMLInputElement>){
@@ -67,8 +60,18 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
        setUserEva((prevUsersEva) => ({...prevUsersEva,
             [name]: event.target.type === "checkbox" ? event.target.checked : newValue
        }))
-
     }
+
+    function handleChangeOnEva(event : ChangeEvent<HTMLInputElement>){
+
+        const name = event.target.name;
+        const newValue = event.target.value;
+
+        setUserEva((prevUsersEva) => ({...prevUsersEva,
+            [name]: event.target.type === "checkbox" ? event.target.checked : newValue
+        }))
+    }
+
 
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -106,11 +109,11 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
                         <label htmlFor={"forWhomZip"}>Postleitzahl:</label>
                         <input
                             type={"text"}
-                            name={"forWhom"}
+                            name={"forWhomZip"}
                             onChange={handleChange}
                             placeholder={`${props.thisUser.companyZip}`}
                         />
-                        <label htmlFor={"forWhomZip"}>Postleitzahl:</label>
+                        <label htmlFor={"forWhomLocation"}>Ort:</label>
 
                         <input
                             type={"text"}
@@ -118,7 +121,7 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
                             onChange={handleChange}
                             placeholder={`${props.thisUser.companyLocation}`}
                         />
-            {evaluationList.map((e)=>{
+            {qList.map((e)=>{
                 return(
                     <article className={"question"} key={e.category+e.inCategoryNum}>
                         <p className={"text"}>{e.txtBlock}</p>
@@ -138,12 +141,12 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
 
                         <p>Sind Maßnahmen erforderlich ? Wenn ja:</p>
 
-                                <label className={"labelValuePair"} htmlFor={"doneDate"}>Bis wann ?
-                                    <input className={"dataInput"} onChange={handleChange} name="doneDate"  type={"date"}/></label>
+                                <label className={"labelValuePair"} htmlFor={"doneTil"}>Bis wann ?
+                                    <input className={"dataInput"} onChange={handleChange} name="doneTil"  type={"date"}/></label>
 
 
                                 <label className={"labelValuePair"} htmlFor={"who"}>Von wem ?
-                                    <select name="who" onChange={ () => handleChange} className={"dataInput"} >
+                                    <select name="respPerson" onSelect={()=>handleChange} className={"dataInput"} >
                                         <option value={props.thisUser.manageLastName}>{props.thisUser.manageLastName}</option>
                                         <option value={props.thisUser.employee1}>{props.thisUser.employee1}</option>
                                         <option value={props.thisUser.employee2}>{props.thisUser.employee2}</option>
@@ -153,8 +156,8 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
 
                                     </select></label>
 
-                                <label className={"labelValuePair"} htmlFor={"control"}>Kontrolle durch:
-                                <select name="control" onChange={ () => handleChange} className={"dataInput"} >
+                                <label className={"labelValuePair"} htmlFor={"controlDone"}>Kontrolle durch:
+                                <select name="controlDone" onChange={ () => handleChange} className={"dataInput"} >
                                     <option value={props.thisUser.manageLastName}>{props.thisUser.manageLastName}</option>
                                     <option value={props.thisUser.employee1}>{props.thisUser.employee1}</option>
                                     <option value={props.thisUser.employee2}>{props.thisUser.employee2}</option>

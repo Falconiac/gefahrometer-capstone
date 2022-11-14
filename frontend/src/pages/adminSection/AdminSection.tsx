@@ -6,7 +6,7 @@ import User from "../../model/User";
 import useEvaluation from "../../hooks/useEvaluation";
 import CreateEvaluationForm from "../../components/createEvaluationCatalogForm/CreateEvaluationForm";
 import AdminEvaluationCheatSheet from "../../components/adminEvaluationSection/AdminEvaluationCheatSheet";
-import Evaluation from "../../model/Evatuation";
+import Evaluation from "../../model/Evaluation";
 import EvaluationCard from "../../components/evaluationCard/EvaluationCard";
 
 export default function AdminSection(){

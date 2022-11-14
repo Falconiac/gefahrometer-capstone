@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Evaluation from "../model/Evatuation";
+import Evaluation from "../model/Evaluation";
 
 export default function useEvaluation(){
 

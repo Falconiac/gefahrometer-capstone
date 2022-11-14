@@ -4,7 +4,7 @@ import useEvaluation from "../../hooks/useEvaluation";
 import {useState} from "react";
 import {FiArrowRight} from "react-icons/fi";
 import {NavLink} from "react-router-dom";
-import Evaluation from "../../model/Evatuation";
+import Evaluation from "../../model/Evaluation";
 
 
 type UserCreateNewEvaProps ={

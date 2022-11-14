@@ -1,5 +1,5 @@
 import './EvaluationCardStyled.css';
-import Evaluation from "../../model/Evatuation";
+import Evaluation from "../../model/Evaluation";
 
 
 type EvaluationCardProps = {

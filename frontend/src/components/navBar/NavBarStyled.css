@@ -6,7 +6,7 @@ nav{
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     height: 6em;
     background-color: cornflowerblue;
     box-shadow: 0 6px 10px 0 rgba(84,127,232,0.55);
@@ -22,6 +22,15 @@ nav{
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 100px;
+}
+#outer-container{
+    background-color: cornflowerblue;
+    position: fixed;
+    width: 2.5em;
+    height: 1.5em;
+    left: 1em;
+    top: 1em;
+
 }
 
 

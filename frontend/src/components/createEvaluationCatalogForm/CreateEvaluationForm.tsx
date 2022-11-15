@@ -1,4 +1,4 @@
-import Evaluation from "../../model/Evatuation";
+import Evaluation from "../../model/Evaluation";
 import {ChangeEvent, FormEvent, useState} from "react";
 import axios from "axios";
 import './createEvaluationFormStyled.css';

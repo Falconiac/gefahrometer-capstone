@@ -1,14 +1,15 @@
 import './EvaluationCardStyled.css';
 import Evaluation from "../../model/Evaluation";
+import User from "../../model/User";
 
 
-type EvaluationCardProps = {
+type UserEvaluationCardProps = {
     eva : Evaluation
-    reloadEvaluations : () => void;
+    user : User;
 }
 
 
-export default function EvaluationCard(props:EvaluationCardProps){
+export default function UserEvaluationCard(props:UserEvaluationCardProps){
 
     return(
         <article className={"evaCard"}>

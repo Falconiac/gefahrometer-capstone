@@ -54,6 +54,7 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
 
     function handleChange(event : ChangeEvent<HTMLInputElement>){
 
+
         const name = event.target.name;
         const newValue = event.target.value;
 
@@ -62,7 +63,8 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
        }))
     }
 
-    function handleChangeOnEva(event : ChangeEvent<HTMLInputElement>){
+    function handleCatalogChange(event : ChangeEvent<HTMLInputElement>,id:string){
+
 
         const name = event.target.name;
         const newValue = event.target.value;
@@ -71,7 +73,6 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
             [name]: event.target.type === "checkbox" ? event.target.checked : newValue
         }))
     }
-
 
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -121,9 +122,13 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
                             onChange={handleChange}
                             placeholder={`${props.thisUser.companyLocation}`}
                         />
-            {qList.map((e)=>{
+
+
+            {qList.map((e:Evaluation,ident)=>{
+
                 return(
-                    <article className={"question"} key={e.category+e.inCategoryNum}>
+                    <article id={e.category+e.id} className={"question"}>
+
                         <p className={"text"}>{e.txtBlock}</p>
                         {e.subTxt && <p className={"subTXT"}>{e.subTxt}</p>}
                         <ul>
@@ -155,17 +160,6 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props){
                                         <option value={props.thisUser.employee5}>{props.thisUser.employee5}</option>
 
                                     </select></label>
-
-                                <label className={"labelValuePair"} htmlFor={"controlDone"}>Kontrolle durch:
-                                <select name="controlDone" onChange={ () => handleChange} className={"dataInput"} >
-                                    <option value={props.thisUser.manageLastName}>{props.thisUser.manageLastName}</option>
-                                    <option value={props.thisUser.employee1}>{props.thisUser.employee1}</option>
-                                    <option value={props.thisUser.employee2}>{props.thisUser.employee2}</option>
-                                    <option value={props.thisUser.employee3}>{props.thisUser.employee3}</option>
-                                    <option value={props.thisUser.employee4}>{props.thisUser.employee4}</option>
-                                    <option value={props.thisUser.employee5}>{props.thisUser.employee5}</option>
-
-                                </select></label>
 
                             <label className={"labelValuePair"} htmlFor={"isDone"} >Maßnahmen erledigt ?
                                 <input className={"checker"} onChange={handleChange} name="isDone" type={"checkbox"} checked={e.done}/></label>

@@ -1,9 +1,10 @@
 import User from "../../model/User";
-import {NavLink} from "react-router-dom";
+import {NavLink,useNavigate} from "react-router-dom";
 import Evaluation from "../../model/Evaluation";
 import "./UserCreateNewEva2Styled.css";
 import {ChangeEvent, FormEvent, SyntheticEvent, useEffect, useState} from "react";
 import UsersEva from "../../model/UsersEva";
+import axios from "axios";
 
 type UserCreateNewEva2Props ={
     thisUser : User;
@@ -11,6 +12,9 @@ type UserCreateNewEva2Props ={
 }
 
 export default function UserCreateNewEva2(props: UserCreateNewEva2Props) {
+
+    const navigate = useNavigate();
+
 
     const emptyUserEva: UsersEva = {
         mail: props.thisUser.mail,
@@ -113,7 +117,9 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props) {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(userEva)
+        axios.post("/api/userseva/addneweva",{...userEva})
+            .then(()=>{navigate("/evaUserArea")})
+
     }
 
     useEffect(() => {

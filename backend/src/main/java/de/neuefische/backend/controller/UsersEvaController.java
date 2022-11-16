@@ -25,7 +25,7 @@ public class UsersEvaController {
     }
 
     @GetMapping("{accountname}")
-    public UsersEva getAllUsersEvasByAccountname(@PathVariable String accountname){
+    public List<UsersEva> getAllUsersEvasByAccountname(@PathVariable String accountname){
         return usersEvaService.getAllUsersEvaOfOneUser(accountname);
     }
 

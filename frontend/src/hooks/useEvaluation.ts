@@ -34,7 +34,7 @@ export default function useEvaluation(){
     const [gefLager2, setgefLager2] = useState([]);
     const [tauchLack, settauchLack] = useState([]);
     const [arbVK, setarbVK] = useState([]);
-    const [userCatalog, setUserCatalog] = useState(new Map<number,Evaluation[]>);
+    const [userCatalog, setUserCatalog] = useState(new Map<number,Evaluation[]>());
 
 
 

@@ -20,7 +20,7 @@ export default function UserCreateNewEva(props: UserCreateNewEvaProps){
         arbHndMas,vibr,hochdWass,taetGef,umgStaub,klBesSpa,entfUnterg,bhf,office,loud,arbHndMas2,
         taetGef2,sprLack,tfnstrahl,gefLager2,tauchLack,arbVK} = useEvaluation();
 
-    const [newUserList, setNewUserList]  = useState(new Map<number,Evaluation[]>) ;
+    const [newUserList, setNewUserList]  = useState(new Map<number,Evaluation[]>()) ;
 
     function toggleCategory(num:number, catalog:Evaluation[]) {
         return () => {

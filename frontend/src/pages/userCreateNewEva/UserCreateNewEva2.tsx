@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import Evaluation from "../../model/Evaluation";
 import "./UserCreateNewEva2Styled.css";
 import {ChangeEvent, FormEvent, SyntheticEvent, useEffect, useState} from "react";
-import axios from "axios";
 import UsersEva from "../../model/UsersEva";
 
 type UserCreateNewEva2Props ={
@@ -125,7 +124,7 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props) {
         setUserEva((prevUserEva) => {
             return {...prevUserEva, evaCatalog: flattenedEvas}
         })
-    }, [])
+    }, [props.catalog])
 
     return (
         <main>

@@ -33,6 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/{id}").permitAll()
                 .antMatchers("/api/user/update").permitAll()
                 .antMatchers("/hello").permitAll()
+                .antMatchers("/api/userseva").permitAll()
+                .antMatchers("/api/userseva/{accountname}").permitAll()
+                .antMatchers("/api/userseva/{id}").permitAll()
+                .antMatchers("/api/userseva/addneweva").permitAll()
+                .antMatchers("/api/userseva/update").permitAll()
                 .and().httpBasic().and().csrf().disable();
     }
 

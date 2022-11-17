@@ -26,7 +26,7 @@ export default function DangerZone(props: DangerZoneProps){
 
             <article className={"seeEvaArea"}>
                 <p>Hier kommen Sie zu Ihren bereits erstellten Gefährdungsbeurteilungen:</p>
-                <a className="regularBTN" href="#/userCreateNewEva">
+                <a className="regularBTN" href="#/evaUserArea">
                     <FiDatabase/> Beurteilungen
                 </a>
             </article>

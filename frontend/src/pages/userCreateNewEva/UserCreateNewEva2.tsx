@@ -252,8 +252,8 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props) {
 
                 })}
 
-                <NavLink to={"/userCreateNewEva"}>Zurück...</NavLink>
-                <input type="submit"/>
+                <NavLink className="regularBTN" to={"/userCreateNewEva"}>Zurück...</NavLink>
+                <input className="regularBTN" type="submit"/>
             </form>
 
         </main>

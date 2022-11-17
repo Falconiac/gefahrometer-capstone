@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import useUsers from "../../hooks/useUsers";
 import axios from "axios";
 import UsersEva from "../../model/UsersEva";
+import UsersEvaCard from "../../components/usersEvaCard/UsersEvaCard";
 
 
 
@@ -17,7 +18,7 @@ export default function EvaUserArea(props: EvaUserProps){
 
     useEffect(()=>{
         getAllUserEvasForThisUser();
-    },[])
+    },[userEvas])
 
     const getAllUserEvasForThisUser = () =>{
         axios.get("/api/userseva/"+me)
@@ -32,7 +33,7 @@ export default function EvaUserArea(props: EvaUserProps){
 
             {userEvas.map((ue:UsersEva)=>{
                 return(
-                    <p>{ue.evaName}</p>
+                   <UsersEvaCard key={ue.evaName} eva={ue} user={props.thisUser}/>
                 )
             })}
 

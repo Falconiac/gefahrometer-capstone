@@ -1,5 +1,5 @@
 import User from "../../model/User";
-import { useState} from "react";
+import {useEffect, useState} from "react";
 import useUsers from "../../hooks/useUsers";
 import axios from "axios";
 import UsersEva from "../../model/UsersEva";
@@ -16,6 +16,10 @@ export default function EvaUserArea(props: EvaUserProps){
     const [userEvas, setUserEvas] = useState([]);
     const{me} = useUsers();
 
+    useEffect(()=>{
+        getAllUserEvasForThisUser();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[userEvas])
 
     const getAllUserEvasForThisUser = () =>{
         axios.get("/api/userseva/"+me)
@@ -23,8 +27,6 @@ export default function EvaUserArea(props: EvaUserProps){
             .then((userEvas)=> setUserEvas(userEvas))
             .catch(error => {console.log(error)})
     }
-
-    getAllUserEvasForThisUser()
 
     return(
         <main>

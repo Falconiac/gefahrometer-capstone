@@ -1,0 +1,77 @@
+
+.usersEvaCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90vw;
+}
+
+.cardHead{
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.evaDetail{
+    height: fit-content;
+}
+
+
+.buttonArea{
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.btnDelete{
+    border: 2px solid cornflowerblue;
+    border-radius: 0.2em;
+    box-shadow: inset 0 0 20px 9px rgba(205,92,92,0.4);
+    transition: 800ms;
+    background: none;
+    color: indianred;
+    font-size: 1.5em;
+    padding: 0.5em;
+
+}
+
+.btnInterAction{
+    padding: 0.5em;
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+    border-radius: 0.2em;
+    box-shadow: inset 0 0 20px 9px rgba(100,149,237,0.4);
+    transition: 800ms;
+    background: none;
+    font-size: 1.5em;
+}
+
+.alarm{
+    color: indianred;
+    font-size: 4em;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.checkDone{
+    color: lightgreen;
+    font-size: 4em;
+    margin: 0 auto;
+}
+
+.off{
+    display: none;
+}
+
+.on{
+    display: initial;
+}
+
+.articleFrameless{
+    border: none;
+}

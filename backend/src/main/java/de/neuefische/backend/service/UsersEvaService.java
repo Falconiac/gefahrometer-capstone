@@ -15,12 +15,12 @@ public class UsersEvaService {
 
 
     @Autowired
-    public UsersEvaService(UsersEvaRepo usersEvaRepo, IdService idService) {
+    public UsersEvaService(UsersEvaRepo usersEvaRepo) {
         this.usersEvaRepo = usersEvaRepo;
     }
 
     private void createUsersEvaFromDTO(UsersEvaDTO usersEvaDTO, UsersEva usersEva){
-        usersEva.setId(usersEvaDTO.getAccountName()+usersEva.getEvaName());
+        usersEva.setId(usersEvaDTO.getAccountName()+usersEvaDTO.getEvaName());
         usersEva.setAccountName(usersEvaDTO.getAccountName());
         usersEva.setMail(usersEvaDTO.getMail());
         usersEva.setManageFirstName(usersEvaDTO.getManageFirstName());
@@ -50,7 +50,7 @@ public class UsersEvaService {
         return usersEvaRepo.findAll();
     }
 
-    public UsersEva getAllUsersEvaOfOneUser(String accountName){
+    public List<UsersEva> getAllUsersEvaOfOneUser(String accountName){
         return usersEvaRepo.findByAccountName(accountName)
                 .orElseThrow(NoSuchElementException::new);
     }

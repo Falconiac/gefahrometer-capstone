@@ -55,7 +55,7 @@ export default function Landingpage(props : LandingPageProps){
                         />
                     </label>
 
-                    <button onClick={()=>{handleLogin()}}>Login</button>
+                    <button className="regularBTN" onClick={()=>{handleLogin()}}>Login</button>
 
 
             </article>}

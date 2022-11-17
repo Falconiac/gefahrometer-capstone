@@ -206,7 +206,7 @@ export default function UserCreateNewEva(props: UserCreateNewEvaProps){
                 </button>
             </article>
 
-            <NavLink className={"addBTN"} to={"/userCreateNewEva2"} onClick={()=>{props.setUserCatalog(newUserList)}}>Weiter <FiArrowRight/></NavLink>
+            <NavLink className="regularBTN" to={"/userCreateNewEva2"} onClick={()=>{props.setUserCatalog(newUserList)}}>Weiter <FiArrowRight/></NavLink>
         </main>
     )
 }

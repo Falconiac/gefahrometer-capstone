@@ -18,6 +18,7 @@ export default function EvaUserArea(props: EvaUserProps){
 
     useEffect(()=>{
         getAllUserEvasForThisUser();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[userEvas])
 
     const getAllUserEvasForThisUser = () =>{

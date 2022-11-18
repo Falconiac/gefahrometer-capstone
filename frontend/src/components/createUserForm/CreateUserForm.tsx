@@ -48,6 +48,7 @@ export default function CreateUserForm(){
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         axios.post(url + "/register", {...newUser})
+            .then()
     }
 
     return(

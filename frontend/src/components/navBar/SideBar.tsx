@@ -4,6 +4,8 @@ import "./Sidebar.css";
 import {FiLogOut, FiSettings, FiPlus, FiDatabase} from "react-icons/fi";
 import axios from "axios";
 import useUsers from "../../hooks/useUsers";
+import 'react-toastify/dist/ReactToastify.css' ;
+import {toast} from "react-toastify";
 
 type SideBarProps = {
     pageWrapID : string;
@@ -22,6 +24,7 @@ export default function SideBar(props:SideBarProps){
     function handleLogout(){
         axios.get("api/user/logout")
             .then(() => setMe(""))
+
     }
 
     return (

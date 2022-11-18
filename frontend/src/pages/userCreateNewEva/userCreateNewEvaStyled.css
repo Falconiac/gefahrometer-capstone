@@ -3,9 +3,9 @@ main{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 8em 0;
+    margin: 3em 0;
     width: 98vw;
-    height: 96vh;
+    height: fit-content ;
     align-items: center;
     justify-content: flex-start;
     gap: 1em;

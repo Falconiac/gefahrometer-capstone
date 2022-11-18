@@ -4,12 +4,18 @@ import './LandingPageStyled.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import CreateUserForm from "../../components/createUserForm/CreateUserForm";
+import 'react-toastify/dist/ReactToastify.css' ;
+import {toast} from "react-toastify";
+import {FiGithub} from "react-icons/fi";
+
+
 
 type LandingPageProps = {
     setUser : (me : string) => void;
 }
 
 export default function Landingpage(props : LandingPageProps){
+
 
 
 
@@ -26,12 +32,15 @@ export default function Landingpage(props : LandingPageProps){
             .then((data) => props.setUser(data))
             .then(() => setUsername(""))
             .then(() => setPassword(""))
+            .then(()=>{toast.dark("Login war erfolgreich")})
             .then(()=>{navigate("/dangerZone")})
-            .catch((error) => console.log(error));
+            .catch(() => toast.dark("Login fehlgeschlagen ! Benutzername oder Passwort falsch"));
     }
 
     return(
-        <section>
+        <section className={"logger"}>
+
+
             {toggleView && <article className={"loginField"}>
                 <h2>Login</h2>
 
@@ -64,6 +73,12 @@ export default function Landingpage(props : LandingPageProps){
             <h3 onClick={()=>{setToggleView(!toggleView)}}>
                 {toggleView ? "Jetzt registrieren" : "Direkt einloggen"}
             </h3>
+
+
+                <a href={"https://github.com/Falconiac/gefahrometer-capstone"}><FiGithub className={"gitIcon"}/><p>Besuchen Sie dieses Projekt auf GitHub </p></a>
+
+
+
         </section>
     )
 }

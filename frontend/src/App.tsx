@@ -10,6 +10,9 @@ import UserCreateNewEva from "./pages/userCreateNewEva/UserCreateNewEva";
 import EvaUserArea from "./pages/evaUserArea/EvaUserArea";
 import useEvaluation from "./hooks/useEvaluation";
 import UserCreateNewEva2 from "./pages/userCreateNewEva/UserCreateNewEva2";
+import {ToastContainer ,toast} from "react-toastify";
+import React from "react";
+
 
 
 function App() {
@@ -22,6 +25,7 @@ function App() {
     <div className="App">
         <NavBar loggedIn={me}/>
       <main className="App-header">
+          <ToastContainer/>
 
           <HashRouter>
               <Routes>

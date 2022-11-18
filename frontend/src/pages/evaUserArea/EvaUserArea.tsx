@@ -4,6 +4,7 @@ import useUsers from "../../hooks/useUsers";
 import axios from "axios";
 import UsersEva from "../../model/UsersEva";
 import UsersEvaCard from "../../components/usersEvaCard/UsersEvaCard";
+import './EvaUserAreaStyled.css';
 
 
 
@@ -29,8 +30,8 @@ export default function EvaUserArea(props: EvaUserProps){
     }
 
     return(
-        <main>
-            <h2>Gespeicherte Eva's von {props.thisUser.accountName}</h2>
+        <main className={"evaUserAreaMain"}>
+            <h2>Gespeicherte Gefährdungsbeurteilungen</h2>
 
             {userEvas.map((ue:UsersEva)=>{
                 return(

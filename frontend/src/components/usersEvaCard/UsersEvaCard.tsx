@@ -4,6 +4,10 @@ import {ChangeEvent, SyntheticEvent, useState} from "react";
 import axios from "axios";
 import { FiCheckSquare,FiTrash2,FiEye,FiEyeOff,FiEdit2,FiPrinter,FiAlertTriangle,FiSave} from "react-icons/fi";
 import User from "../../model/User";
+import {toast} from "react-toastify";
+
+
+
 
 
 
@@ -52,7 +56,6 @@ export default function UsersEvaCard(props: UsersEvaCardProps){
 
             prevUserEva.evaCatalog[evaIndexToUpdate] = updatedEva;
 
-            console.log(prevUserEva)
 
             return { ...prevUserEva };
         });
@@ -78,7 +81,7 @@ export default function UsersEvaCard(props: UsersEvaCardProps){
 
             prevUserEva.evaCatalog[evaIndexToUpdate] = updatedEva;
 
-            console.log(prevUserEva)
+
 
             return { ...prevUserEva };
         });
@@ -88,7 +91,7 @@ export default function UsersEvaCard(props: UsersEvaCardProps){
     const handleSubmit = () => {
         axios.post("/api/userseva/update",{...thisEva})
             .then(()=>{setEdit(!edit)})
-            .then(()=>{setShow(!show)})
+            .then(()=>{toast.dark("Änderungen erfolgreich gespeichert")})
 
     }
 
@@ -114,11 +117,12 @@ export default function UsersEvaCard(props: UsersEvaCardProps){
 
                         {show && <>
                         <button className={"btnInterAction"} onClick={()=>setShow(!show)}><FiEyeOff/></button>
-                        {!edit && <button className={"btnInterAction"} onClick={()=>{setEdit(!edit);console.log("Editieren: " + edit)}}><FiEdit2/></button>}
+                        {<button className={edit ?"btnDelete":"btnInterAction"} onClick={()=>{setEdit(!edit)}}><FiEdit2/></button>}
                         </>
                         }
 
-                        <button className={"btnInterAction"} onClick={()=>{console.log(thisEva)}}><FiPrinter/></button>
+
+                        <button className={"btnInterAction"}><FiPrinter/></button>
                     </section>
 
             </section>
@@ -172,7 +176,7 @@ export default function UsersEvaCard(props: UsersEvaCardProps){
                                 </label>
 
                                 <label>Zu kontrollieren von:
-                                    <select name="respPerson"
+                                    <select name="controlDone"
                                             value={e.controlDone}
                                             onChange={(event) => {handleSelectChange(e.category+e.inCategoryNum,event)}}
                                             className={"dataInput"}>

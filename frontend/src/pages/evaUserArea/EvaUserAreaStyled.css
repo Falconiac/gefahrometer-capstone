@@ -1,12 +1,13 @@
-main{
+.evaUserAreaMain{
 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 2em 0;
+    margin: 3em auto;
     width: 98vw;
     height: fit-content;
     align-items: center;
     justify-content: flex-start;
+    gap: 2em;
 
 }

@@ -5,6 +5,7 @@ import "./UserCreateNewEva2Styled.css";
 import {ChangeEvent, FormEvent, SyntheticEvent, useEffect, useState} from "react";
 import UsersEva from "../../model/UsersEva";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 type UserCreateNewEva2Props ={
     thisUser : User;
@@ -119,6 +120,7 @@ export default function UserCreateNewEva2(props: UserCreateNewEva2Props) {
         event.preventDefault();
         axios.post("/api/userseva/addneweva",{...userEva})
             .then(()=>{navigate("/evaUserArea")})
+            .then(()=>{toast.dark("Beurteilung "+userEva.evaName+" gespeichert")})
 
     }
 

@@ -10,6 +10,7 @@
 
 .App-header {
 
+  margin-top: 4em;
   width: 98vw;
   height: fit-content;
   display: flex;
